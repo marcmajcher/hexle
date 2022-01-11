@@ -1,23 +1,24 @@
-// const desert = '`.`';
-// const forest = 'o8O';
-// const hills = 'nmn';
-// const jungle = '7S1';
-// const mountain = '^^^';
-// const plains = "'''";
-// const swamp = 'i~i';
-// const wastes = 'X*X';
-// const water = '~~~';
+// import border from './tiles/hex_border.png';
+// import desert from './tiles/desert.png';
+// import forest from './tiles/forest.png';
+// import hills from './tiles/hills.png';
+// import jungle from './tiles/jungle.png';
+// import mountain from './tiles/mountain.png';
+// import plains from './tiles/plains.png';
+// import swamp from './tiles/swamp.png';
+// import wastes from './tiles/wastes.png';
+// import water from './tiles/water.png';
 
-import border from './tiles/hex_border.png';
-import desert from './tiles/desert.png';
-import forest from './tiles/forest.png';
-import hills from './tiles/hills.png';
-import jungle from './tiles/jungle.png';
-import mountain from './tiles/mountain.png';
-import plains from './tiles/plains.png';
-import swamp from './tiles/swamp.png';
-import wastes from './tiles/wastes.png';
-import water from './tiles/water.png';
+const border = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/hex_border.png?raw=true';
+const desert = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/desert.png?raw=true';
+const forest = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/forest.png?raw=true';
+const hills = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/hills.png?raw=true';
+const jungle = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/jungle.png?raw=true';
+const mountain = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/mountain.png?raw=true';
+const plains = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/plains.png?raw=true';
+const swamp = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/swamp.png?raw=true';
+const wastes = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/wastes.png?raw=true';
+const water = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/water.png?raw=true';
 
 export const TileList = [
     border,

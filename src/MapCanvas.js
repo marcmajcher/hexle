@@ -3,7 +3,6 @@ import { Tiles, TileList } from './tiles';
 
 export default function MapCanvas({ mapTiles }) {
     const ref = useRef(null);
-    console.log(mapTiles);
 
     function loadImage(url) {
         return new Promise((resolve, reject) => {
@@ -31,6 +30,7 @@ export default function MapCanvas({ mapTiles }) {
         const tileWidth = 150;
         const tileHeight = 175;
 
+        console.log(mapTiles)
         let ty = 0;
         for (let row = 0; row < mapTiles.length; row++) {
             rowTiles = mapTiles[row];

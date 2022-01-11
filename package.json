@@ -1,11 +1,15 @@
 {
   "name": "haxle",
+  "homepage": "http://mmajcher.github.io/hexle",
   "source": "src/index.html",
   "scripts": {
     "start": "parcel --open",
-    "build": "parcel build"
+    "build": "parcel build --public-url ./",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "parcel": "^2.1.1"
   },
   "dependencies": {
