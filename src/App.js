@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useRandom from "./useRandom";
 import './index.css';
+import Tiles from './tiles'
 
 export default function App() {
     const [getNext, setSeed] = useRandom(123456789);
@@ -12,8 +13,9 @@ export default function App() {
     const [out, setOut] = '';
 
     const black = '⬛';
-    const green = '🟩';
     const yellow = '🟨';
+    const green = '🟩';
+    // const digits = [black, yellow, green];
     const digits = [0, 1, 2];
 
     function convertWordle() {
@@ -54,7 +56,6 @@ export default function App() {
     }
 
     function getRandomBlock() {
-        return 'x'
         return digits[Math.floor(getNext() * 3)];
     }
 
@@ -62,38 +63,36 @@ export default function App() {
         const wdlWidth = 5;
         const wdlHeight = 6;
 
-        // 00001
-        // 10010
-        // 02110
-        // 02102
-        // 22222
-        // 11012
-
         const hexCodes = [];
-        for (let x = 0; x <= wdlWidth; x++) {
-            for (let y = 0; y <= wdlHeight; y++) {
+        for (let y = 0; y <= wdlHeight; y++) {
+            for (let x = 0; x <= wdlWidth; x++) {
                 let codels = [];
 
                 codels.push(y - 1 < 0 || x - 1 < 0
                     ? getRandomBlock()
-                    : blocks[(y - 1) * wdlWidth + (x - 1)]);
-                codels.push(y - 1 < 0 || x + 1 > wdlWidth
+                    : digits[blocks[(y - 1) * wdlWidth + (x - 1)]]);
+
+                codels.push(y - 1 < 0 || x === wdlWidth
                     ? getRandomBlock()
-                    : blocks[(y - 1) * wdlWidth + (x + 1)]);
-                codels.push(y + 1 > wdlHeight || x - 1 < 0
+                    : digits[blocks[(y - 1) * wdlWidth + x]]);
+
+                    codels.push(y === wdlHeight || x - 1 < 0
                     ? getRandomBlock()
-                    : blocks[(y + 1) * wdlWidth + (x - 1)]);
-                codels.push(y + 1 > wdlHeight || x + 1 > wdlWidth
+                    : digits[blocks[y * wdlWidth + (x - 1)]]);
+
+                codels.push(y === wdlHeight || x === wdlWidth
                     ? getRandomBlock()
-                    : blocks[(y + 1) * wdlWidth + (x + 1)]);
+                    : digits[blocks[y * wdlWidth + x]]);
 
                 hexCodes.push(codels.join(''));
             }
         }
 
-        return <section className="hexmap">
-            {hexCodes.map(e => <div className="hex">{e}</div>)}
-        </section>;
+        return blocks.length === 30 ?
+            <section className="hexmap">
+                {hexCodes.map(code => <div className="hex">{Tiles[code]}</div>)}
+            </section>
+            : null;
     }
 
     return <><h1>HEXLE</h1>
@@ -116,151 +115,6 @@ Wordle 205 5/6
 ⬛🟩🟨🟨⬛
 ⬛🟩🟨⬛🟩
 🟩🟩🟩🟩🟩
-
-
-
-Wastes:
-
-⬛⬛
-⬛⬛
-
-Water:
-
-🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 ⬛🟩 🟩⬛
-⬛⬛ ⬛🟨 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩🟨 🟩🟩 ⬛⬛ ⬛⬛
-
-Mountain:
-
-⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛
-⬛🟨 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩🟨 🟩🟩
-
-Desert:
-
-⬛🟨 🟨⬛ 🟨🟨 🟨🟨 🟨🟨 🟨🟨 🟨🟨 🟨🟩 🟩🟨 
-🟨🟨 🟨🟨 ⬛🟨 🟨⬛ 🟨🟨 🟨🟩 🟩🟨 🟨🟨 🟨🟨 
-
-Hills:
-
-⬛🟨 ⬛🟨 ⬛🟨 ⬛🟨 ⬛🟩 ⬛🟩 🟨⬛ 🟨⬛ 🟨⬛ 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩⬛ 🟩🟨
-⬛🟨 ⬛🟩 🟨⬛ 🟩⬛ ⬛🟨 🟨⬛ ⬛🟨 ⬛🟩 🟨⬛ 🟩⬛ ⬛⬛ ⬛⬛ ⬛🟨 🟨⬛ ⬛⬛
-
-Plains:
-
-⬛🟨 ⬛🟨 ⬛🟩 🟨⬛ 🟨⬛ 🟨🟨 🟨🟨 🟨🟩 🟨🟩 🟩⬛ 🟩🟨 🟩🟨
-🟨🟩 🟩🟨 🟨🟨 🟨🟩 🟩🟨 ⬛🟩 🟩⬛ ⬛🟨 🟨⬛ 🟨🟨 ⬛🟨 🟨⬛
-
-Marsh/Swamp:
-
-⬛🟨 🟨⬛
-⬛⬛ ⬛⬛
-
-Forest:
-
-⬛🟨 ⬛🟩 ⬛🟩 ⬛🟩 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟨🟩 🟨🟩 🟩⬛ 🟩⬛ 🟩⬛ 🟩⬛ 🟩🟨 🟩🟨 🟩🟨
-🟩🟩 ⬛🟩 🟨🟩 🟩⬛ 🟩🟨 🟩🟩 🟩🟩 ⬛🟩 🟨🟩 🟩⬛ ⬛🟩 🟨🟩 🟩⬛ 🟩🟨 🟨🟩 🟩⬛ 🟩🟨
-
-Jungle:
-
-⬛🟩 🟨🟩 🟩⬛ 🟩🟨
-🟩🟩 🟩🟩 🟩🟩 🟩🟩
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 */

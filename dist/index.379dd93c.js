@@ -22781,6 +22781,8 @@ var _react = require("react");
 var _useRandom = require("./useRandom");
 var _useRandomDefault = parcelHelpers.interopDefault(_useRandom);
 var _indexCss = require("./index.css");
+var _tiles = require("./tiles");
+var _tilesDefault = parcelHelpers.interopDefault(_tiles);
 var _s = $RefreshSig$();
 function App() {
     _s();
@@ -22791,8 +22793,9 @@ function App() {
     const [blocks, setBlocks] = _react.useState([]);
     const [out, setOut] = '';
     const black = '⬛';
-    const green = '🟩';
     const yellow = '🟨';
+    const green = '🟩';
+    // const digits = [black, yellow, green];
     const digits = [
         0,
         1,
@@ -22826,42 +22829,36 @@ function App() {
         setBlocks(_blocks);
     }
     function getRandomBlock() {
-        return 'x';
+        return digits[Math.floor(getNext() * 3)];
     }
     function flexleMap() {
         const wdlWidth = 5;
         const wdlHeight = 6;
-        // 00001
-        // 10010
-        // 02110
-        // 02102
-        // 22222
-        // 11012
         const hexCodes = [];
-        for(let x = 0; x <= wdlWidth; x++)for(let y = 0; y <= wdlHeight; y++){
+        for(let y = 0; y <= wdlHeight; y++)for(let x = 0; x <= wdlWidth; x++){
             let codels = [];
-            codels.push(y - 1 < 0 || x - 1 < 0 ? getRandomBlock() : blocks[(y - 1) * wdlWidth + (x - 1)]);
-            codels.push(y - 1 < 0 || x + 1 > wdlWidth ? getRandomBlock() : blocks[(y - 1) * wdlWidth + (x + 1)]);
-            codels.push(y + 1 > wdlHeight || x - 1 < 0 ? getRandomBlock() : blocks[(y + 1) * wdlWidth + (x - 1)]);
-            codels.push(y + 1 > wdlHeight || x + 1 > wdlWidth ? getRandomBlock() : blocks[(y + 1) * wdlWidth + (x + 1)]);
+            codels.push(y - 1 < 0 || x - 1 < 0 ? getRandomBlock() : digits[blocks[(y - 1) * wdlWidth + (x - 1)]]);
+            codels.push(y - 1 < 0 || x === wdlWidth ? getRandomBlock() : digits[blocks[(y - 1) * wdlWidth + x]]);
+            codels.push(y === wdlHeight || x - 1 < 0 ? getRandomBlock() : digits[blocks[y * wdlWidth + (x - 1)]]);
+            codels.push(y === wdlHeight || x === wdlWidth ? getRandomBlock() : digits[blocks[y * wdlWidth + x]]);
             hexCodes.push(codels.join(''));
         }
-        return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("section", {
+        return blocks.length === 30 ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV("section", {
             className: "hexmap",
-            children: hexCodes.map((e)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+            children: hexCodes.map((code)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
                     className: "hex",
-                    children: e
+                    children: _tilesDefault.default[code]
                 }, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 95,
-                    columnNumber: 32
+                    lineNumber: 93,
+                    columnNumber: 39
                 }, this)
             )
         }, void 0, false, {
             fileName: "src/App.js",
-            lineNumber: 94,
-            columnNumber: 16
-        }, this));
+            lineNumber: 92,
+            columnNumber: 13
+        }, this) : null;
     }
     return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
         children: [
@@ -22869,7 +22866,7 @@ function App() {
                 children: "HEXLE"
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 99,
+                lineNumber: 98,
                 columnNumber: 14
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -22880,12 +22877,12 @@ function App() {
                     onChange: (e)=>setWordle(e.target.value)
                 }, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 101,
+                    lineNumber: 100,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 100,
+                lineNumber: 99,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
@@ -22893,13 +22890,13 @@ function App() {
                 children: "HEXME"
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 104,
+                lineNumber: 103,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("hr", {
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 105,
+                lineNumber: 104,
                 columnNumber: 9
             }, this),
             flexleMap()
@@ -22914,151 +22911,6 @@ Wordle 205 5/6
 ⬛🟩🟨🟨⬛
 ⬛🟩🟨⬛🟩
 🟩🟩🟩🟩🟩
-
-
-
-Wastes:
-
-⬛⬛
-⬛⬛
-
-Water:
-
-🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 ⬛🟩 🟩⬛
-⬛⬛ ⬛🟨 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩🟨 🟩🟩 ⬛⬛ ⬛⬛
-
-Mountain:
-
-⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛
-⬛🟨 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩🟨 🟩🟩
-
-Desert:
-
-⬛🟨 🟨⬛ 🟨🟨 🟨🟨 🟨🟨 🟨🟨 🟨🟨 🟨🟩 🟩🟨 
-🟨🟨 🟨🟨 ⬛🟨 🟨⬛ 🟨🟨 🟨🟩 🟩🟨 🟨🟨 🟨🟨 
-
-Hills:
-
-⬛🟨 ⬛🟨 ⬛🟨 ⬛🟨 ⬛🟩 ⬛🟩 🟨⬛ 🟨⬛ 🟨⬛ 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩⬛ 🟩🟨
-⬛🟨 ⬛🟩 🟨⬛ 🟩⬛ ⬛🟨 🟨⬛ ⬛🟨 ⬛🟩 🟨⬛ 🟩⬛ ⬛⬛ ⬛⬛ ⬛🟨 🟨⬛ ⬛⬛
-
-Plains:
-
-⬛🟨 ⬛🟨 ⬛🟩 🟨⬛ 🟨⬛ 🟨🟨 🟨🟨 🟨🟩 🟨🟩 🟩⬛ 🟩🟨 🟩🟨
-🟨🟩 🟩🟨 🟨🟨 🟨🟩 🟩🟨 ⬛🟩 🟩⬛ ⬛🟨 🟨⬛ 🟨🟨 ⬛🟨 🟨⬛
-
-Marsh/Swamp:
-
-⬛🟨 🟨⬛
-⬛⬛ ⬛⬛
-
-Forest:
-
-⬛🟨 ⬛🟩 ⬛🟩 ⬛🟩 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟨🟩 🟨🟩 🟩⬛ 🟩⬛ 🟩⬛ 🟩⬛ 🟩🟨 🟩🟨 🟩🟨
-🟩🟩 ⬛🟩 🟨🟩 🟩⬛ 🟩🟨 🟩🟩 🟩🟩 ⬛🟩 🟨🟩 🟩⬛ ⬛🟩 🟨🟩 🟩⬛ 🟩🟨 🟨🟩 🟩⬛ 🟩🟨
-
-Jungle:
-
-⬛🟩 🟨🟩 🟩⬛ 🟩🟨
-🟩🟩 🟩🟩 🟩🟩 🟩🟩
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 */ 
@@ -23077,7 +22929,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"3jZUD","react":"4mchR","./useRandom":"lfWSd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","./index.css":"hdrli"}],"lfWSd":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"3jZUD","react":"4mchR","./useRandom":"lfWSd","./index.css":"hdrli","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","./tiles":"6nc0g"}],"lfWSd":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$6959 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -23266,6 +23118,103 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"aeH4U"}],"hdrli":[function() {},{}]},["emU3S","j1F46","hD4hw"], "hD4hw", "parcelRequire7e9e")
+},{"react-refresh/runtime":"aeH4U"}],"hdrli":[function() {},{}],"6nc0g":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const wastes = 'X*X';
+const water = '~~~';
+const mountain = '^^^';
+const hills = 'nmn';
+const desert = '`.`';
+const plains = "'''";
+const swamp = 'i~i';
+const forest = 'o8O';
+const jungle = '7S1';
+const Tiles = {
+    '0000': wastes,
+    '0001': mountain,
+    '0002': mountain,
+    '0010': mountain,
+    '0011': mountain,
+    '0012': mountain,
+    '0020': mountain,
+    '0021': mountain,
+    '0022': mountain,
+    '0100': swamp,
+    '0101': hills,
+    '0102': hills,
+    '0110': hills,
+    '0111': desert,
+    '0112': plains,
+    '0120': hills,
+    '0121': plains,
+    '0122': forest,
+    '0200': water,
+    '0201': hills,
+    '0202': forest,
+    '0210': hills,
+    '0211': plains,
+    '0212': forest,
+    '0220': forest,
+    '0221': forest,
+    '0222': jungle,
+    '1000': swamp,
+    '1001': hills,
+    '1002': hills,
+    '1010': hills,
+    '1011': desert,
+    '1012': plains,
+    '1020': hills,
+    '1021': plains,
+    '1022': forest,
+    '1100': hills,
+    '1101': desert,
+    '1102': plains,
+    '1110': desert,
+    '1111': desert,
+    '1112': desert,
+    '1120': plains,
+    '1121': desert,
+    '1122': forest,
+    '1200': hills,
+    '1201': plains,
+    '1202': forest,
+    '1210': plains,
+    '1211': desert,
+    '1212': forest,
+    '1220': forest,
+    '1221': forest,
+    '1222': jungle,
+    '2000': water,
+    '2001': hills,
+    '2002': forest,
+    '2010': hills,
+    '2011': plains,
+    '2012': forest,
+    '2020': forest,
+    '2021': forest,
+    '2022': jungle,
+    '2100': hills,
+    '2101': plains,
+    '2102': forest,
+    '2110': plains,
+    '2111': desert,
+    '2112': forest,
+    '2120': forest,
+    '2121': forest,
+    '2122': jungle,
+    '2200': water,
+    '2201': water,
+    '2202': water,
+    '2210': water,
+    '2211': water,
+    '2212': water,
+    '2220': water,
+    '2221': water,
+    '2222': water
+};
+exports.default = Tiles;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["emU3S","j1F46","hD4hw"], "hD4hw", "parcelRequire7e9e")
 
 //# sourceMappingURL=index.379dd93c.js.map
