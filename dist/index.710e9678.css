@@ -1,0 +1,17 @@
+.wordle-input {
+    height: 200px;
+}
+
+.hexmap {
+    width: 600px;
+}
+
+.hex {
+    display: inline-block;
+    border: 2px solid black;
+    margin: 4px; 
+    width: 12%;
+    height: 4em;
+    text-align: center;
+}
+/*# sourceMappingURL=index.710e9678.css.map */

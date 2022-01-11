@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useRandom from "./useRandom";
+import './index.css';
 
 export default function App() {
     const [getNext, setSeed] = useRandom(123456789);
@@ -45,18 +46,64 @@ export default function App() {
         }
 
         while (_blocks.length < 30) {
-            _blocks.push(digits[Math.floor(getNext() * 3)]);
+            _blocks.push(getRandomBlock());
         }
 
         console.log(_blocks.join(''));
         setBlocks(_blocks);
+    }
 
+    function getRandomBlock() {
+        return 'x'
+        return digits[Math.floor(getNext() * 3)];
+    }
 
+    function flexleMap() {
+        const wdlWidth = 5;
+        const wdlHeight = 6;
+
+        // 00001
+        // 10010
+        // 02110
+        // 02102
+        // 22222
+        // 11012
+
+        const hexCodes = [];
+        for (let x = 0; x <= wdlWidth; x++) {
+            for (let y = 0; y <= wdlHeight; y++) {
+                let codels = [];
+
+                codels.push(y - 1 < 0 || x - 1 < 0
+                    ? getRandomBlock()
+                    : blocks[(y - 1) * wdlWidth + (x - 1)]);
+                codels.push(y - 1 < 0 || x + 1 > wdlWidth
+                    ? getRandomBlock()
+                    : blocks[(y - 1) * wdlWidth + (x + 1)]);
+                codels.push(y + 1 > wdlHeight || x - 1 < 0
+                    ? getRandomBlock()
+                    : blocks[(y + 1) * wdlWidth + (x - 1)]);
+                codels.push(y + 1 > wdlHeight || x + 1 > wdlWidth
+                    ? getRandomBlock()
+                    : blocks[(y + 1) * wdlWidth + (x + 1)]);
+
+                hexCodes.push(codels.join(''));
+            }
+        }
+
+        return <section className="hexmap">
+            {hexCodes.map(e => <div className="hex">{e}</div>)}
+        </section>;
     }
 
     return <><h1>HEXLE</h1>
-        <textarea cols={15} rows={10} onChange={e => setWordle(e.target.value)} />
+        <div>
+            <textarea cols={15} rows={12} className="wordle-input"
+                onChange={e => setWordle(e.target.value)} />
+        </div>
         <button onClick={convertWordle}>HEXME</button>
+        <hr />
+        {flexleMap()}
     </>;
 }
 

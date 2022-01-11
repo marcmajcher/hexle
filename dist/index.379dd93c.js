@@ -22780,6 +22780,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _useRandom = require("./useRandom");
 var _useRandomDefault = parcelHelpers.interopDefault(_useRandom);
+var _indexCss = require("./index.css");
 var _s = $RefreshSig$();
 function App() {
     _s();
@@ -22820,9 +22821,47 @@ function App() {
                 _blocks.push(2);
                 break;
         }
-        while(_blocks.length < 30)_blocks.push(digits[Math.floor(getNext() * 3)]);
+        while(_blocks.length < 30)_blocks.push(getRandomBlock());
         console.log(_blocks.join(''));
         setBlocks(_blocks);
+    }
+    function getRandomBlock() {
+        return 'x';
+    }
+    function flexleMap() {
+        const wdlWidth = 5;
+        const wdlHeight = 6;
+        // 00001
+        // 10010
+        // 02110
+        // 02102
+        // 22222
+        // 11012
+        const hexCodes = [];
+        for(let x = 0; x <= wdlWidth; x++)for(let y = 0; y <= wdlHeight; y++){
+            let codels = [];
+            codels.push(y - 1 < 0 || x - 1 < 0 ? getRandomBlock() : blocks[(y - 1) * wdlWidth + (x - 1)]);
+            codels.push(y - 1 < 0 || x + 1 > wdlWidth ? getRandomBlock() : blocks[(y - 1) * wdlWidth + (x + 1)]);
+            codels.push(y + 1 > wdlHeight || x - 1 < 0 ? getRandomBlock() : blocks[(y + 1) * wdlWidth + (x - 1)]);
+            codels.push(y + 1 > wdlHeight || x + 1 > wdlWidth ? getRandomBlock() : blocks[(y + 1) * wdlWidth + (x + 1)]);
+            hexCodes.push(codels.join(''));
+        }
+        return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("section", {
+            className: "hexmap",
+            children: hexCodes.map((e)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                    className: "hex",
+                    children: e
+                }, void 0, false, {
+                    fileName: "src/App.js",
+                    lineNumber: 95,
+                    columnNumber: 32
+                }, this)
+            )
+        }, void 0, false, {
+            fileName: "src/App.js",
+            lineNumber: 94,
+            columnNumber: 16
+        }, this));
     }
     return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
         children: [
@@ -22830,16 +22869,23 @@ function App() {
                 children: "HEXLE"
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 57,
+                lineNumber: 99,
                 columnNumber: 14
             }, this),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("textarea", {
-                cols: 15,
-                rows: 10,
-                onChange: (e)=>setWordle(e.target.value)
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("textarea", {
+                    cols: 15,
+                    rows: 12,
+                    className: "wordle-input",
+                    onChange: (e)=>setWordle(e.target.value)
+                }, void 0, false, {
+                    fileName: "src/App.js",
+                    lineNumber: 101,
+                    columnNumber: 13
+                }, this)
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 58,
+                lineNumber: 100,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
@@ -22847,9 +22893,16 @@ function App() {
                 children: "HEXME"
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 59,
+                lineNumber: 104,
                 columnNumber: 9
-            }, this)
+            }, this),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("hr", {
+            }, void 0, false, {
+                fileName: "src/App.js",
+                lineNumber: 105,
+                columnNumber: 9
+            }, this),
+            flexleMap()
         ]
     }, void 0, true));
 } /*
@@ -23024,7 +23077,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"3jZUD","react":"4mchR","./useRandom":"lfWSd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13"}],"lfWSd":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"3jZUD","react":"4mchR","./useRandom":"lfWSd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","./index.css":"hdrli"}],"lfWSd":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$6959 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -23213,6 +23266,6 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"aeH4U"}]},["emU3S","j1F46","hD4hw"], "hD4hw", "parcelRequire7e9e")
+},{"react-refresh/runtime":"aeH4U"}],"hdrli":[function() {},{}]},["emU3S","j1F46","hD4hw"], "hD4hw", "parcelRequire7e9e")
 
 //# sourceMappingURL=index.379dd93c.js.map
