@@ -1,12 +1,22 @@
-const desert = '`.`';
-const forest = 'o8O';
-const hills = 'nmn';
-const jungle = '7S1';
-const mountain = '^^^';
-const plains = "'''";
-const swamp = 'i~i';
-const wastes = 'X*X';
-const water = '~~~';
+// const desert = '`.`';
+// const forest = 'o8O';
+// const hills = 'nmn';
+// const jungle = '7S1';
+// const mountain = '^^^';
+// const plains = "'''";
+// const swamp = 'i~i';
+// const wastes = 'X*X';
+// const water = '~~~';
+
+import desert from './tiles/desert.png'
+import forest from './tiles/forest.png'
+import hills from './tiles/hills.png'
+import jungle from './tiles/jungle.png'
+import mountain from './tiles/mountain.png'
+import plains from './tiles/plains.png'
+import swamp from './tiles/swamp.png'
+import wastes from './tiles/wastes.png'
+import water from './tiles/water.png'
 
 const Tiles = {
     '0000': wastes,

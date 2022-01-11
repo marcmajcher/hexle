@@ -3,14 +3,17 @@
 }
 
 .hexmap {
-    width: 600px;
+    width: 1200px;
 }
 
 .hex {
     display: inline-block;
-    border: 2px solid black;
     margin: 4px; 
-    width: 14%;
+    width: 150px;
     height: 4em;
     text-align: center;
+}
+
+canvas {
+    border :2px solid black;
 }

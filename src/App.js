@@ -2,6 +2,7 @@ import { useState } from "react";
 import useRandom from "./useRandom";
 import './index.css';
 import Tiles from './tiles'
+import MapCanvas from "./MapCanvas";
 
 export default function App() {
     const [getNext, setSeed] = useRandom(123456789);
@@ -90,7 +91,7 @@ export default function App() {
 
         return blocks.length === 30 ?
             <section className="hexmap">
-                {hexCodes.map(code => <div className="hex">{Tiles[code]}</div>)}
+                {hexCodes.map(code => <div className="hex"><img src={Tiles[code]} /></div>)}
             </section>
             : null;
     }
@@ -103,6 +104,8 @@ export default function App() {
         <button onClick={convertWordle}>HEXME</button>
         <hr />
         {flexleMap()}
+        <hr />
+        <MapCanvas />
     </>;
 }
 
