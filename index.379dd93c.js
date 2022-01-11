@@ -23332,7 +23332,6 @@ var _s = $RefreshSig$();
 function MapCanvas({ mapTiles  }) {
     _s();
     const ref = _react.useRef(null);
-    console.log(mapTiles);
     function loadImage(url) {
         return new Promise((resolve, reject)=>{
             const img = new Image();
@@ -23365,6 +23364,7 @@ function MapCanvas({ mapTiles  }) {
         ctx.canvas.height = 975;
         const tileWidth = 150;
         const tileHeight = 175;
+        console.log(mapTiles);
         let ty = 0;
         for(let row = 0; row < mapTiles.length; row++){
             rowTiles = mapTiles[row];
