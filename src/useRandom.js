@@ -1,17 +1,21 @@
-import { useState } from "react/cjs/react.development";
+import { useRef, useState } from "react";
 
 export default function useRandom(seedIn) {
-    const [seed, setSeed] = useState(parseInt(seedIn));
-    const seedSize = seedIn.toString().length % 2 ? seedIn.toString().length + 1 : seedIn.toString().length;
-    console.log('seedsize', seedSize);
+    const seed = useRef(parseInt(seedIn));
+    const seedLen = seedIn.toString().length;
+    const seedSize = seedLen % 2 ? seedLen + 1 : seedLen;
 
-    return function getNext() {
+    function getNext() {
         // use middle square because dgaf, bigger seed is better
-        let square = (seed * seed).toString();
-        // pad it 
-        square = square.padStart((seedSize * 2) - square.length, '0');
+        const square = (seed.current * seed.current).toString().padStart(seedSize * 2, '0');
         const newSeed = square.slice(seedSize / 2, -seedSize / 2);
-        setSeed(parseInt(newSeed));
-        return newSeed;
+        setSeed(newSeed);
+        return parseFloat(`0.${newSeed}`);
     };
+
+    function setSeed(newSeed) {
+        seed.current = parseInt(newSeed);
+    }
+
+    return [getNext, setSeed];
 }

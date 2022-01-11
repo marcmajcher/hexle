@@ -22778,9 +22778,12 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
+var _useRandom = require("./useRandom");
+var _useRandomDefault = parcelHelpers.interopDefault(_useRandom);
 var _s = $RefreshSig$();
 function App() {
     _s();
+    const [getNext, setSeed] = _useRandomDefault.default(123456789);
     const [wordle, setWordle] = _react.useState('');
     const [wordleNum, setWordleNum] = _react.useState(0);
     const [score, setScore] = _react.useState(0);
@@ -22789,15 +22792,21 @@ function App() {
     const black = '⬛';
     const green = '🟩';
     const yellow = '🟨';
+    const digits = [
+        0,
+        1,
+        2
+    ];
     function convertWordle() {
-        console.log(wordle);
-        const wordlRe = /Wordle\s+(\d+)\s+(\d)\/(\d)/s;
+        const wordlRe = /Wordle\s+(\d+)\s+(\d|X)\/(\d)/s;
         const result = wordle.match(wordlRe);
         if (result) {
             const [_, _num, _score, _six] = result;
+            const _scoreNum = _score === 'X' ? 9 : _score;
             setWordleNum(_num);
-            setScore(_score);
+            setScore(_scoreNum);
             setBlocks(wordle);
+            setSeed((_num + score) * (_num - _score) * (_score + 4) * (_num + 123));
         }
         const _blocks = [];
         for (char of wordle)switch(char){
@@ -22811,6 +22820,7 @@ function App() {
                 _blocks.push(2);
                 break;
         }
+        while(_blocks.length < 30)_blocks.push(digits[Math.floor(getNext() * 3)]);
         console.log(_blocks.join(''));
         setBlocks(_blocks);
     }
@@ -22820,7 +22830,7 @@ function App() {
                 children: "HEXLE"
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 43,
+                lineNumber: 57,
                 columnNumber: 14
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("textarea", {
@@ -22829,7 +22839,7 @@ function App() {
                 onChange: (e)=>setWordle(e.target.value)
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 44,
+                lineNumber: 58,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
@@ -22837,20 +22847,7 @@ function App() {
                 children: "HEXME"
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 45,
-                columnNumber: 9
-            }, this),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-                children: [
-                    wordleNum,
-                    " - ",
-                    score,
-                    "/6 - ",
-                    out
-                ]
-            }, void 0, true, {
-                fileName: "src/App.js",
-                lineNumber: 46,
+                lineNumber: 59,
                 columnNumber: 9
             }, this)
         ]
@@ -23013,7 +23010,11 @@ Jungle:
 
 */ 
 exports.default = App;
-_s(App, "iM5O4mLR653UxpyV/8xAeS8oH1k=");
+_s(App, "+L8EKB00bF8GF76EKafxSnmJO9I=", false, function() {
+    return [
+        _useRandomDefault.default
+    ];
+});
 _c = App;
 var _c;
 $RefreshReg$(_c, "App");
@@ -23023,7 +23024,46 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"3jZUD","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","react":"4mchR"}],"ciiiV":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"3jZUD","react":"4mchR","./useRandom":"lfWSd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13"}],"lfWSd":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$6959 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$6959.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _s = $RefreshSig$();
+function useRandom(seedIn) {
+    _s();
+    const seed = _react.useRef(parseInt(seedIn));
+    const seedLen = seedIn.toString().length;
+    const seedSize = seedLen % 2 ? seedLen + 1 : seedLen;
+    function getNext() {
+        // use middle square because dgaf, bigger seed is better
+        const square = (seed.current * seed.current).toString().padStart(seedSize * 2, '0');
+        const newSeed = square.slice(seedSize / 2, -seedSize / 2);
+        setSeed(newSeed);
+        return parseFloat(`0.${newSeed}`);
+    }
+    function setSeed(newSeed) {
+        seed.current = parseInt(newSeed);
+    }
+    return [
+        getNext,
+        setSeed
+    ];
+}
+exports.default = useRandom;
+_s(useRandom, "2Xp+nv2mIkQ9Da2KdEW7Px/B4Hs=");
+
+  $parcel$ReactRefreshHelpers$6959.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"4mchR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
