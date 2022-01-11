@@ -23121,15 +23121,15 @@ function registerExportsForReactRefresh(module) {
 },{"react-refresh/runtime":"aeH4U"}],"hdrli":[function() {},{}],"6nc0g":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-const wastes = 'X*X';
-const water = '~~~';
-const mountain = '^^^';
-const hills = 'nmn';
 const desert = '`.`';
+const forest = 'o8O';
+const hills = 'nmn';
+const jungle = '7S1';
+const mountain = '^^^';
 const plains = "'''";
 const swamp = 'i~i';
-const forest = 'o8O';
-const jungle = '7S1';
+const wastes = 'X*X';
+const water = '~~~';
 const Tiles = {
     '0000': wastes,
     '0001': mountain,

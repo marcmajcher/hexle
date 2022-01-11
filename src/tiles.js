@@ -1,12 +1,12 @@
-const wastes = 'X*X';
-const water = '~~~';
-const mountain = '^^^';
-const hills = 'nmn';
 const desert = '`.`';
+const forest = 'o8O';
+const hills = 'nmn';
+const jungle = '7S1';
+const mountain = '^^^';
 const plains = "'''";
 const swamp = 'i~i';
-const forest = 'o8O';
-const jungle = '7S1';
+const wastes = 'X*X';
+const water = '~~~';
 
 const Tiles = {
     '0000': wastes,
