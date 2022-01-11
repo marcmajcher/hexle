@@ -23325,8 +23325,8 @@ console.log(Tiles['0000']); /*
 
 */ 
 
-},{"./tiles/desert.png":"fciVs","./tiles/forest.png":"c2VAe","./tiles/hills.png":"9ygAg","./tiles/jungle.png":"iWcRB","./tiles/mountain.png":"jGvT9","./tiles/plains.png":"e6FTc","./tiles/swamp.png":"7e8Oc","./tiles/wastes.png":"bYJlW","./tiles/water.png":"2IocE","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./tiles/hex_border.png":"2WrRG"}],"fciVs":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "desert.74863509.png" + "?" + Date.now();
+},{"./tiles/hex_border.png":"2WrRG","./tiles/desert.png":"fciVs","./tiles/forest.png":"c2VAe","./tiles/hills.png":"9ygAg","./tiles/jungle.png":"iWcRB","./tiles/mountain.png":"jGvT9","./tiles/plains.png":"e6FTc","./tiles/swamp.png":"7e8Oc","./tiles/wastes.png":"bYJlW","./tiles/water.png":"2IocE","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2WrRG":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "hex_border.8bd10515.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
 "use strict";
@@ -23363,7 +23363,10 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"c2VAe":[function(require,module,exports) {
+},{}],"fciVs":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "desert.74863509.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"c2VAe":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "forest.8be0b530.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"9ygAg":[function(require,module,exports) {
@@ -23386,9 +23389,6 @@ module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "wastes
 
 },{"./helpers/bundle-url":"chiK4"}],"2IocE":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "water.6b2d9de5.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"2WrRG":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "hex_border.8bd10515.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"aes3H":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$a039 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
@@ -23471,6 +23471,6 @@ $RefreshReg$(_c, "MapCanvas");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"3jZUD","react":"4mchR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","./tiles":"6nc0g"}]},["emU3S","j1F46","hD4hw"], "hD4hw", "parcelRequire7e9e")
+},{"react/jsx-dev-runtime":"3jZUD","react":"4mchR","./tiles":"6nc0g","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13"}]},["emU3S","j1F46","hD4hw"], "hD4hw", "parcelRequire7e9e")
 
 //# sourceMappingURL=index.379dd93c.js.map
