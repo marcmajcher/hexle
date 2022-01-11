@@ -22777,16 +22777,243 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _s = $RefreshSig$();
 function App() {
-    return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("h1", {
-        children: "WASSSSUP"
-    }, void 0, false, {
-        fileName: "src/App.js",
-        lineNumber: 2,
-        columnNumber: 12
-    }, this));
-}
+    _s();
+    const [wordle, setWordle] = _react.useState('');
+    const [wordleNum, setWordleNum] = _react.useState(0);
+    const [score, setScore] = _react.useState(0);
+    const [blocks, setBlocks] = _react.useState([]);
+    const [out, setOut] = '';
+    const black = '⬛';
+    const green = '🟩';
+    const yellow = '🟨';
+    function convertWordle() {
+        console.log(wordle);
+        const wordlRe = /Wordle\s+(\d+)\s+(\d)\/(\d)/s;
+        const result = wordle.match(wordlRe);
+        if (result) {
+            const [_, _num, _score, _six] = result;
+            setWordleNum(_num);
+            setScore(_score);
+            setBlocks(wordle);
+        }
+        const _blocks = [];
+        for (char of wordle)switch(char){
+            case black:
+                _blocks.push(0);
+                break;
+            case yellow:
+                _blocks.push(1);
+                break;
+            case green:
+                _blocks.push(2);
+                break;
+        }
+        console.log(_blocks.join(''));
+        setBlocks(_blocks);
+    }
+    return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+        children: [
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h1", {
+                children: "HEXLE"
+            }, void 0, false, {
+                fileName: "src/App.js",
+                lineNumber: 43,
+                columnNumber: 14
+            }, this),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("textarea", {
+                cols: 15,
+                rows: 10,
+                onChange: (e)=>setWordle(e.target.value)
+            }, void 0, false, {
+                fileName: "src/App.js",
+                lineNumber: 44,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
+                onClick: convertWordle,
+                children: "HEXME"
+            }, void 0, false, {
+                fileName: "src/App.js",
+                lineNumber: 45,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                children: [
+                    wordleNum,
+                    " - ",
+                    score,
+                    "/6 - ",
+                    out
+                ]
+            }, void 0, true, {
+                fileName: "src/App.js",
+                lineNumber: 46,
+                columnNumber: 9
+            }, this)
+        ]
+    }, void 0, true));
+} /*
+
+Wordle 205 5/6
+
+⬛⬛⬛⬛🟨
+🟨⬛⬛🟨⬛
+⬛🟩🟨🟨⬛
+⬛🟩🟨⬛🟩
+🟩🟩🟩🟩🟩
+
+
+
+Wastes:
+
+⬛⬛
+⬛⬛
+
+Water:
+
+🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 ⬛🟩 🟩⬛
+⬛⬛ ⬛🟨 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩🟨 🟩🟩 ⬛⬛ ⬛⬛
+
+Mountain:
+
+⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛
+⬛🟨 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩🟨 🟩🟩
+
+Desert:
+
+⬛🟨 🟨⬛ 🟨🟨 🟨🟨 🟨🟨 🟨🟨 🟨🟨 🟨🟩 🟩🟨 
+🟨🟨 🟨🟨 ⬛🟨 🟨⬛ 🟨🟨 🟨🟩 🟩🟨 🟨🟨 🟨🟨 
+
+Hills:
+
+⬛🟨 ⬛🟨 ⬛🟨 ⬛🟨 ⬛🟩 ⬛🟩 🟨⬛ 🟨⬛ 🟨⬛ 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩⬛ 🟩🟨
+⬛🟨 ⬛🟩 🟨⬛ 🟩⬛ ⬛🟨 🟨⬛ ⬛🟨 ⬛🟩 🟨⬛ 🟩⬛ ⬛⬛ ⬛⬛ ⬛🟨 🟨⬛ ⬛⬛
+
+Plains:
+
+⬛🟨 ⬛🟨 ⬛🟩 🟨⬛ 🟨⬛ 🟨🟨 🟨🟨 🟨🟩 🟨🟩 🟩⬛ 🟩🟨 🟩🟨
+🟨🟩 🟩🟨 🟨🟨 🟨🟩 🟩🟨 ⬛🟩 🟩⬛ ⬛🟨 🟨⬛ 🟨🟨 ⬛🟨 🟨⬛
+
+Marsh/Swamp:
+
+⬛🟨 🟨⬛
+⬛⬛ ⬛⬛
+
+Forest:
+
+⬛🟨 ⬛🟩 ⬛🟩 ⬛🟩 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟨🟩 🟨🟩 🟩⬛ 🟩⬛ 🟩⬛ 🟩⬛ 🟩🟨 🟩🟨 🟩🟨
+🟩🟩 ⬛🟩 🟨🟩 🟩⬛ 🟩🟨 🟩🟩 🟩🟩 ⬛🟩 🟨🟩 🟩⬛ ⬛🟩 🟨🟩 🟩⬛ 🟩🟨 🟨🟩 🟩⬛ 🟩🟨
+
+Jungle:
+
+⬛🟩 🟨🟩 🟩⬛ 🟩🟨
+🟩🟩 🟩🟩 🟩🟩 🟩🟩
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/ 
 exports.default = App;
+_s(App, "iM5O4mLR653UxpyV/8xAeS8oH1k=");
 _c = App;
 var _c;
 $RefreshReg$(_c, "App");
@@ -22796,7 +23023,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"3jZUD","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13"}],"ciiiV":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"3jZUD","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","react":"4mchR"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
