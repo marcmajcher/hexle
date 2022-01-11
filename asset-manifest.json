@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hexle/static/css/main.77046875.css",
+    "main.js": "/hexle/static/js/main.d10b91e2.js",
+    "index.html": "/hexle/index.html",
+    "main.77046875.css.map": "/hexle/static/css/main.77046875.css.map",
+    "main.d10b91e2.js.map": "/hexle/static/js/main.d10b91e2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.77046875.css",
+    "static/js/main.d10b91e2.js"
+  ]
+}
