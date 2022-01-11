@@ -8,17 +8,30 @@
 // const wastes = 'X*X';
 // const water = '~~~';
 
-import desert from './tiles/desert.png'
-import forest from './tiles/forest.png'
-import hills from './tiles/hills.png'
-import jungle from './tiles/jungle.png'
-import mountain from './tiles/mountain.png'
-import plains from './tiles/plains.png'
-import swamp from './tiles/swamp.png'
-import wastes from './tiles/wastes.png'
-import water from './tiles/water.png'
+import border from './tiles/hex_border.png';
+import desert from './tiles/desert.png';
+import forest from './tiles/forest.png';
+import hills from './tiles/hills.png';
+import jungle from './tiles/jungle.png';
+import mountain from './tiles/mountain.png';
+import plains from './tiles/plains.png';
+import swamp from './tiles/swamp.png';
+import wastes from './tiles/wastes.png';
+import water from './tiles/water.png';
 
-const Tiles = {
+export const TileList = [
+    border,
+    desert,
+    forest,
+    hills,
+    jungle,
+    mountain,
+    plains,
+    swamp,
+    wastes,
+    water];
+
+export const Tiles = {
     '0000': wastes,
     '0001': mountain,
     '0002': mountain,
@@ -102,55 +115,56 @@ const Tiles = {
     '2222': water,
 };
 
+console.log(Tiles['0000']);
+
 /*
     Wastes:
 
     ⬛⬛
     ⬛⬛
-    
+
     Water:
-    
+
     🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 🟩🟩 ⬛🟩 🟩⬛
     ⬛⬛ ⬛🟨 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩🟨 🟩🟩 ⬛⬛ ⬛⬛
-    
+
     Mountain:
-    
+
     ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛ ⬛⬛
     ⬛🟨 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩🟨 🟩🟩
-    
+
     Desert:
-    
-    ⬛🟨 🟨⬛ 🟨🟨 🟨🟨 🟨🟨 🟨🟨 🟨🟨 🟨🟩 🟩🟨 
-    🟨🟨 🟨🟨 ⬛🟨 🟨⬛ 🟨🟨 🟨🟩 🟩🟨 🟨🟨 🟨🟨 
-    
+
+    ⬛🟨 🟨⬛ 🟨🟨 🟨🟨 🟨🟨 🟨🟨 🟨🟨 🟨🟩 🟩🟨
+    🟨🟨 🟨🟨 ⬛🟨 🟨⬛ 🟨🟨 🟨🟩 🟩🟨 🟨🟨 🟨🟨
+
     Hills:
-    
+
     ⬛🟨 ⬛🟨 ⬛🟨 ⬛🟨 ⬛🟩 ⬛🟩 🟨⬛ 🟨⬛ 🟨⬛ 🟨⬛ 🟨🟨 🟨🟩 🟩⬛ 🟩⬛ 🟩🟨
     ⬛🟨 ⬛🟩 🟨⬛ 🟩⬛ ⬛🟨 🟨⬛ ⬛🟨 ⬛🟩 🟨⬛ 🟩⬛ ⬛⬛ ⬛⬛ ⬛🟨 🟨⬛ ⬛⬛
-    
+
     Plains:
-    
+
     ⬛🟨 ⬛🟨 ⬛🟩 🟨⬛ 🟨⬛ 🟨🟨 🟨🟨 🟨🟩 🟨🟩 🟩⬛ 🟩🟨 🟩🟨
     🟨🟩 🟩🟨 🟨🟨 🟨🟩 🟩🟨 ⬛🟩 🟩⬛ ⬛🟨 🟨⬛ 🟨🟨 ⬛🟨 🟨⬛
-    
+
     Marsh/Swamp:
-    
+
     ⬛🟨 🟨⬛
     ⬛⬛ ⬛⬛
-    
+
     Forest:
-    
+
     ⬛🟨 ⬛🟩 ⬛🟩 ⬛🟩 ⬛🟩 🟨⬛ 🟨🟨 🟨🟩 🟨🟩 🟨🟩 🟨🟩 🟩⬛ 🟩⬛ 🟩⬛ 🟩⬛ 🟩🟨 🟩🟨 🟩🟨
     🟩🟩 ⬛🟩 🟨🟩 🟩⬛ 🟩🟨 🟩🟩 🟩🟩 ⬛🟩 🟨🟩 🟩🟨 🟩⬛ ⬛🟩 🟨🟩 🟩⬛ 🟩🟨 🟨🟩 🟩⬛ 🟩🟨
-    
+
     Jungle:
-    
+
     ⬛🟩 🟨🟩 🟩⬛ 🟩🟨
     🟩🟩 🟩🟩 🟩🟩 🟩🟩
-    
+
     🟩🟨
     ⬛🟩
-    
+
 */
 
-export default Tiles;

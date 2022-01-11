@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useRandom from "./useRandom";
 import './index.css';
-import Tiles from './tiles'
+import { Tiles } from './tiles';
 import MapCanvas from "./MapCanvas";
 
 export default function App() {
@@ -52,7 +52,6 @@ export default function App() {
             _blocks.push(getRandomBlock());
         }
 
-        console.log(_blocks.join(''));
         setBlocks(_blocks);
     }
 
@@ -66,6 +65,7 @@ export default function App() {
 
         const hexCodes = [];
         for (let y = 0; y <= wdlHeight; y++) {
+            const row = [];
             for (let x = 0; x <= wdlWidth; x++) {
                 let codels = [];
 
@@ -77,7 +77,7 @@ export default function App() {
                     ? getRandomBlock()
                     : digits[blocks[(y - 1) * wdlWidth + x]]);
 
-                    codels.push(y === wdlHeight || x - 1 < 0
+                codels.push(y === wdlHeight || x - 1 < 0
                     ? getRandomBlock()
                     : digits[blocks[y * wdlWidth + (x - 1)]]);
 
@@ -85,28 +85,33 @@ export default function App() {
                     ? getRandomBlock()
                     : digits[blocks[y * wdlWidth + x]]);
 
-                hexCodes.push(codels.join(''));
+                row.push(codels.join(''));
             }
+            hexCodes.push(row);
         }
 
-        return blocks.length === 30 ?
+        return hexCodes;
+    }
+
+    function drawMap(hexes) {
+        return hexes.length === 7 ?
             <section className="hexmap">
-                {hexCodes.map(code => <div className="hex"><img src={Tiles[code]} /></div>)}
+                {hexes.map(row => <div>
+                    {row.map(code => <div className="hex"><img src={Tiles[code]} /></div>)}
+                </div>)}
             </section>
             : null;
     }
 
-    return <><h1>HEXLE</h1>
+    return <div className="main">
+        <h1>HEXLE</h1>
+        {blocks.length >0 ? <MapCanvas mapTiles={flexleMap()} /> : null}
         <div>
             <textarea cols={15} rows={12} className="wordle-input"
                 onChange={e => setWordle(e.target.value)} />
         </div>
         <button onClick={convertWordle}>HEXME</button>
-        <hr />
-        {flexleMap()}
-        <hr />
-        <MapCanvas />
-    </>;
+    </div>;
 }
 
 /*
