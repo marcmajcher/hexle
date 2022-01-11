@@ -33,8 +33,8 @@ export default function MapCanvas({ mapTiles }) {
         console.log(mapTiles)
         let ty = 0;
         for (let row = 0; row < mapTiles.length; row++) {
-            rowTiles = mapTiles[row];
-            tx = 0;
+            const rowTiles = mapTiles[row];
+            let tx = 0;
             for (let col = 0; col < rowTiles.length; col++) {
                 ctx.drawImage(imageDict[Tiles[rowTiles[col]]],
                     row % 2 ? tx + tileWidth / 2 : tx, ty, tileWidth, tileHeight);

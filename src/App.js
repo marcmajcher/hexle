@@ -34,7 +34,7 @@ export default function App() {
         }
 
         const _blocks = [];
-        for (char of wordle) {
+        for (let char of wordle) {
             switch (char) {
                 case black:
                     _blocks.push(0);
