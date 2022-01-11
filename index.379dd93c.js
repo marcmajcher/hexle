@@ -23150,129 +23150,120 @@ parcelHelpers.export(exports, "TileList", ()=>TileList
 );
 parcelHelpers.export(exports, "Tiles", ()=>Tiles
 );
-// const desert = '`.`';
-// const forest = 'o8O';
-// const hills = 'nmn';
-// const jungle = '7S1';
-// const mountain = '^^^';
-// const plains = "'''";
-// const swamp = 'i~i';
-// const wastes = 'X*X';
-// const water = '~~~';
-var _hexBorderPng = require("./tiles/hex_border.png");
-var _hexBorderPngDefault = parcelHelpers.interopDefault(_hexBorderPng);
-var _desertPng = require("./tiles/desert.png");
-var _desertPngDefault = parcelHelpers.interopDefault(_desertPng);
-var _forestPng = require("./tiles/forest.png");
-var _forestPngDefault = parcelHelpers.interopDefault(_forestPng);
-var _hillsPng = require("./tiles/hills.png");
-var _hillsPngDefault = parcelHelpers.interopDefault(_hillsPng);
-var _junglePng = require("./tiles/jungle.png");
-var _junglePngDefault = parcelHelpers.interopDefault(_junglePng);
-var _mountainPng = require("./tiles/mountain.png");
-var _mountainPngDefault = parcelHelpers.interopDefault(_mountainPng);
-var _plainsPng = require("./tiles/plains.png");
-var _plainsPngDefault = parcelHelpers.interopDefault(_plainsPng);
-var _swampPng = require("./tiles/swamp.png");
-var _swampPngDefault = parcelHelpers.interopDefault(_swampPng);
-var _wastesPng = require("./tiles/wastes.png");
-var _wastesPngDefault = parcelHelpers.interopDefault(_wastesPng);
-var _waterPng = require("./tiles/water.png");
-var _waterPngDefault = parcelHelpers.interopDefault(_waterPng);
+// import border from './tiles/hex_border.png';
+// import desert from './tiles/desert.png';
+// import forest from './tiles/forest.png';
+// import hills from './tiles/hills.png';
+// import jungle from './tiles/jungle.png';
+// import mountain from './tiles/mountain.png';
+// import plains from './tiles/plains.png';
+// import swamp from './tiles/swamp.png';
+// import wastes from './tiles/wastes.png';
+// import water from './tiles/water.png';
+const border = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/hex_border.png?raw=true';
+const desert = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/desert.png?raw=true';
+const forest = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/forest.png?raw=true';
+const hills = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/hills.png?raw=true';
+const jungle = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/jungle.png?raw=true';
+const mountain = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/mountain.png?raw=true';
+const plains = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/plains.png?raw=true';
+const swamp = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/swamp.png?raw=true';
+const wastes = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/wastes.png?raw=true';
+const water = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/water.png?raw=true';
 const TileList = [
-    _hexBorderPngDefault.default,
-    _desertPngDefault.default,
-    _forestPngDefault.default,
-    _hillsPngDefault.default,
-    _junglePngDefault.default,
-    _mountainPngDefault.default,
-    _plainsPngDefault.default,
-    _swampPngDefault.default,
-    _wastesPngDefault.default,
-    _waterPngDefault.default
+    border,
+    desert,
+    forest,
+    hills,
+    jungle,
+    mountain,
+    plains,
+    swamp,
+    wastes,
+    water
 ];
 const Tiles = {
-    '0000': _wastesPngDefault.default,
-    '0001': _mountainPngDefault.default,
-    '0002': _mountainPngDefault.default,
-    '0010': _mountainPngDefault.default,
-    '0011': _mountainPngDefault.default,
-    '0012': _mountainPngDefault.default,
-    '0020': _mountainPngDefault.default,
-    '0021': _mountainPngDefault.default,
-    '0022': _mountainPngDefault.default,
-    '0100': _swampPngDefault.default,
-    '0101': _hillsPngDefault.default,
-    '0102': _hillsPngDefault.default,
-    '0110': _hillsPngDefault.default,
-    '0111': _desertPngDefault.default,
-    '0112': _plainsPngDefault.default,
-    '0120': _hillsPngDefault.default,
-    '0121': _plainsPngDefault.default,
-    '0122': _forestPngDefault.default,
-    '0200': _waterPngDefault.default,
-    '0201': _hillsPngDefault.default,
-    '0202': _forestPngDefault.default,
-    '0210': _hillsPngDefault.default,
-    '0211': _plainsPngDefault.default,
-    '0212': _forestPngDefault.default,
-    '0220': _forestPngDefault.default,
-    '0221': _forestPngDefault.default,
-    '0222': _junglePngDefault.default,
-    '1000': _swampPngDefault.default,
-    '1001': _hillsPngDefault.default,
-    '1002': _hillsPngDefault.default,
-    '1010': _hillsPngDefault.default,
-    '1011': _desertPngDefault.default,
-    '1012': _plainsPngDefault.default,
-    '1020': _hillsPngDefault.default,
-    '1021': _plainsPngDefault.default,
-    '1022': _forestPngDefault.default,
-    '1100': _hillsPngDefault.default,
-    '1101': _desertPngDefault.default,
-    '1102': _plainsPngDefault.default,
-    '1110': _desertPngDefault.default,
-    '1111': _desertPngDefault.default,
-    '1112': _desertPngDefault.default,
-    '1120': _plainsPngDefault.default,
-    '1121': _desertPngDefault.default,
-    '1122': _forestPngDefault.default,
-    '1200': _hillsPngDefault.default,
-    '1201': _plainsPngDefault.default,
-    '1202': _forestPngDefault.default,
-    '1210': _plainsPngDefault.default,
-    '1211': _desertPngDefault.default,
-    '1212': _forestPngDefault.default,
-    '1220': _forestPngDefault.default,
-    '1221': _forestPngDefault.default,
-    '1222': _junglePngDefault.default,
-    '2000': _waterPngDefault.default,
-    '2001': _hillsPngDefault.default,
-    '2002': _forestPngDefault.default,
-    '2010': _hillsPngDefault.default,
-    '2011': _plainsPngDefault.default,
-    '2012': _forestPngDefault.default,
-    '2020': _forestPngDefault.default,
-    '2021': _forestPngDefault.default,
-    '2022': _junglePngDefault.default,
-    '2100': _hillsPngDefault.default,
-    '2101': _plainsPngDefault.default,
-    '2102': _forestPngDefault.default,
-    '2110': _plainsPngDefault.default,
-    '2111': _desertPngDefault.default,
-    '2112': _forestPngDefault.default,
-    '2120': _forestPngDefault.default,
-    '2121': _forestPngDefault.default,
-    '2122': _junglePngDefault.default,
-    '2200': _waterPngDefault.default,
-    '2201': _waterPngDefault.default,
-    '2202': _waterPngDefault.default,
-    '2210': _waterPngDefault.default,
-    '2211': _waterPngDefault.default,
-    '2212': _waterPngDefault.default,
-    '2220': _waterPngDefault.default,
-    '2221': _waterPngDefault.default,
-    '2222': _waterPngDefault.default
+    '0000': wastes,
+    '0001': mountain,
+    '0002': mountain,
+    '0010': mountain,
+    '0011': mountain,
+    '0012': mountain,
+    '0020': mountain,
+    '0021': mountain,
+    '0022': mountain,
+    '0100': swamp,
+    '0101': hills,
+    '0102': hills,
+    '0110': hills,
+    '0111': desert,
+    '0112': plains,
+    '0120': hills,
+    '0121': plains,
+    '0122': forest,
+    '0200': water,
+    '0201': hills,
+    '0202': forest,
+    '0210': hills,
+    '0211': plains,
+    '0212': forest,
+    '0220': forest,
+    '0221': forest,
+    '0222': jungle,
+    '1000': swamp,
+    '1001': hills,
+    '1002': hills,
+    '1010': hills,
+    '1011': desert,
+    '1012': plains,
+    '1020': hills,
+    '1021': plains,
+    '1022': forest,
+    '1100': hills,
+    '1101': desert,
+    '1102': plains,
+    '1110': desert,
+    '1111': desert,
+    '1112': desert,
+    '1120': plains,
+    '1121': desert,
+    '1122': forest,
+    '1200': hills,
+    '1201': plains,
+    '1202': forest,
+    '1210': plains,
+    '1211': desert,
+    '1212': forest,
+    '1220': forest,
+    '1221': forest,
+    '1222': jungle,
+    '2000': water,
+    '2001': hills,
+    '2002': forest,
+    '2010': hills,
+    '2011': plains,
+    '2012': forest,
+    '2020': forest,
+    '2021': forest,
+    '2022': jungle,
+    '2100': hills,
+    '2101': plains,
+    '2102': forest,
+    '2110': plains,
+    '2111': desert,
+    '2112': forest,
+    '2120': forest,
+    '2121': forest,
+    '2122': jungle,
+    '2200': water,
+    '2201': water,
+    '2202': water,
+    '2210': water,
+    '2211': water,
+    '2212': water,
+    '2220': water,
+    '2221': water,
+    '2222': water
 };
 console.log(Tiles['0000']); /*
     Wastes:
@@ -23325,72 +23316,7 @@ console.log(Tiles['0000']); /*
 
 */ 
 
-},{"./tiles/hex_border.png":"2WrRG","./tiles/desert.png":"fciVs","./tiles/forest.png":"c2VAe","./tiles/hills.png":"9ygAg","./tiles/jungle.png":"iWcRB","./tiles/mountain.png":"jGvT9","./tiles/plains.png":"e6FTc","./tiles/swamp.png":"7e8Oc","./tiles/wastes.png":"bYJlW","./tiles/water.png":"2IocE","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2WrRG":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "hex_border.8bd10515.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
-"use strict";
-var bundleURL = {
-};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return '/';
-}
-function getBaseURL(url) {
-    return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
-} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ('' + url).match(/(https?|file|ftp):\/\/[^/]+/);
-    if (!matches) throw new Error('Origin not found');
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"fciVs":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "desert.74863509.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"c2VAe":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "forest.8be0b530.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"9ygAg":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "hills.83e14842.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"iWcRB":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "jungle.5713a501.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"jGvT9":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "mountain.49aecbdd.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"e6FTc":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "plains.e2e8ae31.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"7e8Oc":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "swamp.74d0e334.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"bYJlW":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "wastes.d87496f4.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"2IocE":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('hjDlF') + "water.6b2d9de5.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"aes3H":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aes3H":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$a039 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
