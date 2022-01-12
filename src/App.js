@@ -20,7 +20,7 @@ export default function App() {
     function convertWordle() {
         const wordlRe = /Wordle\s+(\d+)\s+(\d|X)\/(\d)/s;
         const result = wordle.match(wordlRe);
-        console.log(result);
+
         if (result) {
             const [, _num, _score] = result;
             const _scoreNum = _score === 'X' ? 9 : _score;
@@ -34,7 +34,6 @@ export default function App() {
         const _blocks = [];
         for (let char of wordle) {
             if (char in blockNum) {
-                console.log(char, blockNum[char]);
                 _blocks.push(blockNum[char]);
             }
         }

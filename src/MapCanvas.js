@@ -10,7 +10,7 @@ export default function MapCanvas({ mapTiles }) {
         return new Promise((resolve, reject) => {
             const img = new Image();
             img.onload = () => resolve({ url, img });
-            img.onerror = () => reject(new Error(`load ${url} failed`));
+            img.onerror = () => reject(new Error(`loading ${url} failed`));
             img.src = url;
         });
     }
