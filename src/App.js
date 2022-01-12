@@ -19,6 +19,10 @@ export default function App() {
         '🟩': 2,
     };
 
+    function getRandomBlock() {
+        return Math.floor(getNext() * 3);
+    }
+
     function convertWordle() {
         const wordlRe = /Wordle\s+(\d+)\s+(\d|X)\/(\d)/s;
         const result = wordle.match(wordlRe);
@@ -44,10 +48,6 @@ export default function App() {
         }
 
         setBlocks(_blocks);
-    }
-
-    function getRandomBlock() {
-        return Math.floor(getNext() * 3);
     }
 
     function createMapTiles() {
