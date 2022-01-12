@@ -24,7 +24,7 @@ export default function MapCanvas({ mapTiles }) {
             const imageDict = imageList.reduce((a, c) => { a[c.url] = c.img; return a; }, {});
             draw(context, imageDict);
         });
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     function draw(ctx, imageDict) {
         ctx.canvas.width = tileWidth * 6.35;

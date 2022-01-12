@@ -1,7 +1,6 @@
 import { useState } from "react";
 import useRandom from "./useRandom";
 import './index.css';
-import { Tiles } from './tiles';
 import MapCanvas from "./MapCanvas";
 
 export default function App() {
@@ -11,22 +10,22 @@ export default function App() {
     const [wordleNum, setWordleNum] = useState(0);
     const [score, setScore] = useState(0);
     const [blocks, setBlocks] = useState([]);
-    const [out, setOut] = '';
 
-    const black = '⬛';
-    const yellow = '🟨';
-    const green = '🟩';
-    const digits = [0, 1, 2];
+    const blockNum = {
+        '⬛': 0,
+        '🟨': 1,
+        '🟩': 2,
+    };
 
     function convertWordle() {
         const wordlRe = /Wordle\s+(\d+)\s+(\d|X)\/(\d)/s;
         const result = wordle.match(wordlRe);
+        console.log(result);
         if (result) {
-            const [_, _num, _score, _six] = result;
+            const [, _num, _score] = result;
             const _scoreNum = _score === 'X' ? 9 : _score;
             setWordleNum(_num);
             setScore(_scoreNum);
-            setBlocks(wordle);
             setSeed(
                 (_num + score) * (_num - _score) * (_score + 4) * (_num + 123)
             );
@@ -34,19 +33,11 @@ export default function App() {
 
         const _blocks = [];
         for (let char of wordle) {
-            switch (char) {
-                case black:
-                    _blocks.push(0);
-                    break;
-                case yellow:
-                    _blocks.push(1);
-                    break;
-                case green:
-                    _blocks.push(2);
-                    break;
+            if (char in blockNum) {
+                console.log(char, blockNum[char]);
+                _blocks.push(blockNum[char]);
             }
         }
-
         while (_blocks.length < 30) {
             _blocks.push(getRandomBlock());
         }
@@ -55,10 +46,10 @@ export default function App() {
     }
 
     function getRandomBlock() {
-        return digits[Math.floor(getNext() * 3)];
+        return Math.floor(getNext() * 3);
     }
 
-    function flexleMap() {
+    function createMapTiles() {
         const wdlWidth = 5;
         const wdlHeight = 6;
 
@@ -70,19 +61,19 @@ export default function App() {
 
                 codels.push(y - 1 < 0 || x - 1 < 0
                     ? getRandomBlock()
-                    : digits[blocks[(y - 1) * wdlWidth + (x - 1)]]);
+                    : blocks[(y - 1) * wdlWidth + (x - 1)]);
 
                 codels.push(y - 1 < 0 || x === wdlWidth
                     ? getRandomBlock()
-                    : digits[blocks[(y - 1) * wdlWidth + x]]);
+                    : blocks[(y - 1) * wdlWidth + x]);
 
                 codels.push(y === wdlHeight || x - 1 < 0
                     ? getRandomBlock()
-                    : digits[blocks[y * wdlWidth + (x - 1)]]);
+                    : blocks[y * wdlWidth + (x - 1)]);
 
                 codels.push(y === wdlHeight || x === wdlWidth
                     ? getRandomBlock()
-                    : digits[blocks[y * wdlWidth + x]]);
+                    : blocks[y * wdlWidth + x]);
 
                 row.push(codels.join(''));
             }
@@ -92,24 +83,30 @@ export default function App() {
         return hexCodes;
     }
 
-    function drawMap(hexes) {
-        return hexes.length === 7 ?
-            <section className="hexmap">
-                {hexes.map(row => <div>
-                    {row.map(code => <div className="hex"><img src={Tiles[code]} /></div>)}
-                </div>)}
-            </section>
-            : null;
-    }
-
     return <div className="main">
-        <h1>HEXLE</h1>
-        {blocks.length > 0 ? <MapCanvas mapTiles={flexleMap()} /> : null}
+        <nav>
+            <h1>HEXLE</h1>
+        </nav>
+
         <div>
-            <textarea cols={15} rows={12} className="wordle-input"
-                onChange={e => setWordle(e.target.value)} />
+            <div className="left-col">
+                <div className="input-label">Paste Your Wordle Here!</div>
+                <div>
+                    <textarea className="wordle-input"
+                        onChange={e => setWordle(e.target.value)}
+                    />
+                </div>
+                <button onClick={convertWordle}>HEXME</button>
+            </div>
+            <div className="right-col">
+                {blocks.length > 0 ?
+                    <div>
+                        <h2>Map Number {wordleNum}-{score}</h2>
+                        <MapCanvas mapTiles={createMapTiles()} />
+                    </div>
+                    : null}
+            </div>
         </div>
-        <button onClick={convertWordle}>HEXME</button>
     </div>;
 }
 
