@@ -16,7 +16,6 @@ export default function App() {
     const black = '⬛';
     const yellow = '🟨';
     const green = '🟩';
-    // const digits = [black, yellow, green];
     const digits = [0, 1, 2];
 
     function convertWordle() {
@@ -105,7 +104,7 @@ export default function App() {
 
     return <div className="main">
         <h1>HEXLE</h1>
-        {blocks.length >0 ? <MapCanvas mapTiles={flexleMap()} /> : null}
+        {blocks.length > 0 ? <MapCanvas mapTiles={flexleMap()} /> : null}
         <div>
             <textarea cols={15} rows={12} className="wordle-input"
                 onChange={e => setWordle(e.target.value)} />
@@ -123,6 +122,5 @@ Wordle 205 5/6
 ⬛🟩🟨🟨⬛
 ⬛🟩🟨⬛🟩
 🟩🟩🟩🟩🟩
-
 
 */

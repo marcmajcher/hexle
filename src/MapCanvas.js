@@ -27,12 +27,9 @@ export default function MapCanvas({ mapTiles }) {
     }, []);
 
     function draw(ctx, imageDict) {
-        ctx.canvas.width = 975;
-        ctx.canvas.height = 975;
-        // const tileWidth = 150;
-        // const tileHeight = 175;
+        ctx.canvas.width = tileWidth * 6.35;
+        ctx.canvas.height = tileWidth * 6.25;
 
-        console.log(mapTiles)
         let ty = 0;
         for (let row = 0; row < mapTiles.length; row++) {
             const rowTiles = mapTiles[row];
@@ -42,12 +39,10 @@ export default function MapCanvas({ mapTiles }) {
                     row % 2 ? tx + tileWidth / 2 : tx, ty, tileWidth, tileHeight);
                 ctx.drawImage(imageDict[TileList[0]],
                     row % 2 ? tx + tileWidth / 2 : tx, ty, tileWidth, tileHeight);
-                tx += tileWidth;
+                tx += tileWidth - 3;
             }
-            ty += tileHeight * .75;
+            ty += tileHeight * .75 - 3;
         }
-
-        ctx.drawImage(imageDict[Tiles['0001']], 0, 0, 150, 180);
     }
 
     return <canvas ref={ref} />;

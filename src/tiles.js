@@ -1,4 +1,4 @@
-// import border from './tiles/hex_border.png';
+// import border from './tiles/border.png';
 // import desert from './tiles/desert.png';
 // import forest from './tiles/forest.png';
 // import hills from './tiles/hills.png';
@@ -9,7 +9,7 @@
 // import wastes from './tiles/wastes.png';
 // import water from './tiles/water.png';
 
-const border = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/100/hex_border.png?raw=true';
+const border = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/100/border.png?raw=true';
 const desert = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/100/desert.png?raw=true';
 const forest = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/100/forest.png?raw=true';
 const hills = 'https://github.com/marcmajcher/hexle/blob/master/src/tiles/100/hills.png?raw=true';
@@ -115,8 +115,6 @@ export const Tiles = {
     '2221': water,
     '2222': water,
 };
-
-console.log(Tiles['0000']);
 
 /*
     Wastes:
