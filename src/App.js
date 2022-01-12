@@ -1,10 +1,12 @@
-import { useState } from "react";
-import useRandom from "./useRandom";
+import { useState } from 'react';
+import useRandom from './useRandom';
+import useWordle from './useWordle';
 import './index.css';
-import MapCanvas from "./MapCanvas";
+import MapCanvas from './MapCanvas';
 
 export default function App() {
     const [getNext, setSeed] = useRandom(123456789);
+    const getTodaysWord = useWordle();
 
     const [wordle, setWordle] = useState('');
     const [wordleNum, setWordleNum] = useState(0);
@@ -100,7 +102,7 @@ export default function App() {
             <div className="right-col">
                 {blocks.length > 0 ?
                     <div>
-                        <h2>Map Number {wordleNum}-{score}</h2>
+                        <h2>Map {wordleNum === 0 ? '???' : wordleNum} - The Land of {getTodaysWord(wordleNum)}</h2>
                         <MapCanvas mapTiles={createMapTiles()} />
                     </div>
                     : null}
