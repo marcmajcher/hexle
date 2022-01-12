@@ -2,14 +2,6 @@
     height: 200px;
 }
 
-.hex {
-    display: inline-block;
-    margin: 4px; 
-    width: 150px;
-    height: 4em;
-    text-align: center;
-}
-
 .main {
     width: 90%;
     margin-left: auto;

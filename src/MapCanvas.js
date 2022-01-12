@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Tiles, TileList } from './tiles';
+const tileWidth = 100;
+const tileHeight = tileWidth * 1.16667;
 
 export default function MapCanvas({ mapTiles }) {
     const ref = useRef(null);
@@ -27,8 +29,8 @@ export default function MapCanvas({ mapTiles }) {
     function draw(ctx, imageDict) {
         ctx.canvas.width = 975;
         ctx.canvas.height = 975;
-        const tileWidth = 150;
-        const tileHeight = 175;
+        // const tileWidth = 150;
+        // const tileHeight = 175;
 
         console.log(mapTiles)
         let ty = 0;
