@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Tiles, TileList } from './tiles';
+import HexSpinner from './HexSpinner';
+
 const tileWidth = 100;
 const tileHeight = tileWidth * 1.16667;
 
 export default function MapCanvas({ mapTiles }) {
     const canvasRef = useRef(null);
     const [imageDict, setImageDict] = useState({});
+    const [ready, setReady] = useState(false);
 
     function loadImage(url) {
         return new Promise((resolve, reject) => {
@@ -20,6 +23,7 @@ export default function MapCanvas({ mapTiles }) {
         const tileImages = TileList.map(tileUrl => loadImage(tileUrl));
         Promise.all(tileImages).then(imageList => {
             setImageDict(imageList.reduce((a, c) => { a[c.url] = c.img; return a; }, {}));
+            setReady(true);
         });
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -42,11 +46,14 @@ export default function MapCanvas({ mapTiles }) {
         }
     }
 
-    if (Object.keys(imageDict).length > 0) {
+    if (ready) {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
         draw(context, imageDict);
     }
 
-    return <canvas ref={canvasRef} />;
+    return <div className="canvas-frame">
+        <canvas ref={canvasRef} />
+        {ready ? null : <HexSpinner />}
+    </div>;
 }

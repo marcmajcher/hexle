@@ -67,3 +67,8 @@ textarea {
     height: 340px;
     width: 160px;
 }
+
+.canvas-frame {
+    position: relative;
+    text-align: center;
+}
