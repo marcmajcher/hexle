@@ -9,6 +9,8 @@ export default function useGenerator() {
     const [score, setScore] = useState(0);
     const [wordleNum, setWordleNum] = useState(0);
 
+    const wordleWidth = 5;
+    const wordleHeight = 6;
     const blockNum = {
         '⬛': 0,
         '🟨': 1,
@@ -25,14 +27,13 @@ export default function useGenerator() {
         return getRandom(3);
     }
 
-
     function getRegionName() {
         const index = getRandom(regionNames);
         return regionNames[index].replace('%%', getTodaysWord(wordleNum));
     }
 
     function getMapTitle() {
-        return `Map ${wordleNum === 0 ? '???' : wordleNum} - ${getRegionName()}`;
+        return `The ${getRegionName(0)}`;
     }
 
     function parseWordle(wordle) {
@@ -41,12 +42,9 @@ export default function useGenerator() {
 
         if (result) {
             const [, _num, _score] = result;
-            const _scoreNum = _score === 'X' ? 9 : _score;
             setWordleNum(_num);
-            setScore(_scoreNum);
-            setSeed(
-                (_num + score) * (_num - _score) * (_score + 4) * (_num + 123)
-            );
+            setScore(_score === 'X' ? 9 : _score);
+            setSeed((_num + score) * (_num - _score) * (_score + 4) * (_num + 123));
         }
 
         const _blocks = [];
@@ -58,35 +56,31 @@ export default function useGenerator() {
         while (_blocks.length < 30) {
             _blocks.push(getRandomBlock());
         }
-
         setBlocks(_blocks);
     }
 
-    function createMapTiles() {
-        const wdlWidth = 5;
-        const wdlHeight = 6;
-
+    function createMapTiles(width, height) {
         const hexCodes = [];
-        for (let y = 0; y <= wdlHeight; y++) {
+        for (let y = 0; y <= height; y++) {
             const row = [];
-            for (let x = 0; x <= wdlWidth; x++) {
+            for (let x = 0; x <= width; x++) {
                 let codels = [];
 
                 codels.push(y - 1 < 0 || x - 1 < 0
                     ? getRandomBlock()
-                    : blocks[(y - 1) * wdlWidth + (x - 1)]);
+                    : blocks[(y - 1) * width + (x - 1)]);
 
-                codels.push(y - 1 < 0 || x === wdlWidth
+                codels.push(y - 1 < 0 || x === width
                     ? getRandomBlock()
-                    : blocks[(y - 1) * wdlWidth + x]);
+                    : blocks[(y - 1) * width + x]);
 
-                codels.push(y === wdlHeight || x - 1 < 0
+                codels.push(y === height || x - 1 < 0
                     ? getRandomBlock()
-                    : blocks[y * wdlWidth + (x - 1)]);
+                    : blocks[y * width + (x - 1)]);
 
-                codels.push(y === wdlHeight || x === wdlWidth
+                codels.push(y === height || x === width
                     ? getRandomBlock()
-                    : blocks[y * wdlWidth + x]);
+                    : blocks[y * width + x]);
 
                 row.push(codels.join(''));
             }
@@ -97,8 +91,8 @@ export default function useGenerator() {
     }
 
     function mapReady() {
-        return blocks.length > 0;
+        return blocks.length === 30;
     }
 
-    return [parseWordle, createMapTiles, getMapTitle, mapReady];
+    return [parseWordle, () => createMapTiles(wordleWidth, wordleHeight), getMapTitle, mapReady];
 }
