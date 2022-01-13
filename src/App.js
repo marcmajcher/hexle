@@ -1,15 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useGenerator from './useGenerator';
 import './index.scss';
 import MapCanvas from './MapCanvas';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function App() {
-    const [parseWordle, mapTiles, getMapTitle, mapReady] = useGenerator();
+    const [parseWordle, mapTiles, getMapTitle, mapReady, decodeWordle] = useGenerator();
     const params = useParams();
-    const id = params.id;
-
+    const navigate = useNavigate();
     const [wordle, setWordle] = useState('');
+
+    useEffect(() => {
+        setWordle(decodeWordle(params.id));
+    }, [params.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return <div className="main">
         <nav>
@@ -19,11 +22,14 @@ export default function App() {
             <div className="left-col">
                 <div className="input-label">Paste Your Wordle Here!</div>
                 <div>
-                    <textarea className="wordle-input"
+                    <textarea className="wordle-input" value={wordle}
                         onChange={e => setWordle(e.target.value)}
                     />
                 </div>
-                <button onClick={() => parseWordle(wordle)}>HEXME</button>
+                <button onClick={() => {
+                    const encodedWordle = parseWordle(wordle);
+                    navigate(`/hexle/${encodedWordle}`);
+                }}>HEXME</button>
             </div>
             <div className="right-col">
                 {mapReady() ?
@@ -31,17 +37,17 @@ export default function App() {
                         <h2>{getMapTitle()}</h2>
                         <MapCanvas mapTiles={mapTiles()} />
                     </div>
-                    : 
+                    :
                     <div>
                         <h2 className="greybar">
                             <span className="g3" />
                             <span className="g7" />
                             <span className="g2" />
                             <span className="g5" />
-                            </h2>
-                            <img src="placeholder.png" alt="placeholder" />
-                        </div>
-                        }
+                        </h2>
+                        <img src="placeholder.png" alt="placeholder" />
+                    </div>
+                }
             </div>
         </div>
     </div>;
