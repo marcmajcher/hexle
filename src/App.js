@@ -1,105 +1,20 @@
 import { useState } from 'react';
-import useRandom from './useRandom';
-import useWordle from './useWordle';
+import useGenerator from './useGenerator';
 import './index.css';
 import MapCanvas from './MapCanvas';
+import { useParams } from 'react-router-dom';
 
 export default function App() {
-    const [getRandom, setSeed] = useRandom(123456789);
-    const getTodaysWord = useWordle();
+    const [parseWordle, mapTiles, getMapTitle, mapReady] = useGenerator();
+    const params = useParams();
+    const id = params.id;
 
     const [wordle, setWordle] = useState('');
-    const [wordleNum, setWordleNum] = useState(0);
-    const [score, setScore] = useState(0);
-    const [blocks, setBlocks] = useState([]);
-
-    const blockNum = {
-        '⬛': 0,
-        '🟨': 1,
-        '🟩': 2,
-    };
-
-    const regionNames = [
-        'Land of %%', 'Kingdom of %%', 'Duchy of %%', '%% Territory', 
-        '%% Region', 'Realm of %%', '%% Empire', '%% Nation', '%% Domain',
-        'Province of %%', '%% Colonies', 'Throne of %%', 'Crown of %%',
-    ]
-
-    function getRandomBlock() {
-        return getRandom(3);
-    }
-
-    function getRegionName(word) {
-        const index = getRandom(regionNames);
-        return regionNames[index].replace('%%', word)
-    }
-
-    function convertWordle() {
-        const wordlRe = /Wordle\s+(\d+)\s+(\d|X)\/(\d)/s;
-        const result = wordle.match(wordlRe);
-
-        if (result) {
-            const [, _num, _score] = result;
-            const _scoreNum = _score === 'X' ? 9 : _score;
-            setWordleNum(_num);
-            setScore(_scoreNum);
-            setSeed(
-                (_num + score) * (_num - _score) * (_score + 4) * (_num + 123)
-            );
-        }
-
-        const _blocks = [];
-        for (let char of wordle) {
-            if (char in blockNum) {
-                _blocks.push(blockNum[char]);
-            }
-        }
-        while (_blocks.length < 30) {
-            _blocks.push(getRandomBlock());
-        }
-
-        setBlocks(_blocks);
-    }
-
-    function createMapTiles() {
-        const wdlWidth = 5;
-        const wdlHeight = 6;
-
-        const hexCodes = [];
-        for (let y = 0; y <= wdlHeight; y++) {
-            const row = [];
-            for (let x = 0; x <= wdlWidth; x++) {
-                let codels = [];
-
-                codels.push(y - 1 < 0 || x - 1 < 0
-                    ? getRandomBlock()
-                    : blocks[(y - 1) * wdlWidth + (x - 1)]);
-
-                codels.push(y - 1 < 0 || x === wdlWidth
-                    ? getRandomBlock()
-                    : blocks[(y - 1) * wdlWidth + x]);
-
-                codels.push(y === wdlHeight || x - 1 < 0
-                    ? getRandomBlock()
-                    : blocks[y * wdlWidth + (x - 1)]);
-
-                codels.push(y === wdlHeight || x === wdlWidth
-                    ? getRandomBlock()
-                    : blocks[y * wdlWidth + x]);
-
-                row.push(codels.join(''));
-            }
-            hexCodes.push(row);
-        }
-
-        return hexCodes;
-    }
 
     return <div className="main">
         <nav>
             <h1>HEXLE</h1>
         </nav>
-
         <div>
             <div className="left-col">
                 <div className="input-label">Paste Your Wordle Here!</div>
@@ -108,37 +23,16 @@ export default function App() {
                         onChange={e => setWordle(e.target.value)}
                     />
                 </div>
-                <button onClick={convertWordle}>HEXME</button>
+                <button onClick={() => parseWordle(wordle)}>HEXME</button>
             </div>
             <div className="right-col">
-                {blocks.length > 0 ?
+                {mapReady() ?
                     <div>
-                        <h2>Map {wordleNum === 0 ? '???' : wordleNum} - {getRegionName(getTodaysWord(wordleNum))}</h2>
-                        <MapCanvas mapTiles={createMapTiles()} />
+                        <h2>{getMapTitle()}</h2>
+                        <MapCanvas mapTiles={mapTiles()} />
                     </div>
                     : null}
             </div>
         </div>
     </div>;
 }
-
-/*
-
-Wordle 205 5/6
-
-⬛⬛⬛⬛🟨
-🟨⬛⬛🟨⬛
-⬛🟩🟨🟨⬛
-⬛🟩🟨⬛🟩
-🟩🟩🟩🟩🟩
-
-Wordle 208 X/6
-
-🟩⬛⬛⬛🟨
-🟩⬛⬛🟩⬛
-🟩⬛⬛🟩⬛
-🟩⬛⬛🟩⬛
-🟩⬛⬛🟩⬛
-🟩⬛⬛🟩⬛
-
-*/
