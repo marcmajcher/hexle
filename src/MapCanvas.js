@@ -1,10 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Tiles, TileList } from './tiles';
 const tileWidth = 100;
 const tileHeight = tileWidth * 1.16667;
 
 export default function MapCanvas({ mapTiles }) {
-    const ref = useRef(null);
+    const canvasRef = useRef(null);
+    const [imageDict, setImageDict] = useState({});
 
     function loadImage(url) {
         return new Promise((resolve, reject) => {
@@ -16,13 +17,9 @@ export default function MapCanvas({ mapTiles }) {
     }
 
     useEffect(() => {
-        const canvas = ref.current;
-        const context = canvas.getContext('2d');
-
         const tileImages = TileList.map(tileUrl => loadImage(tileUrl));
         Promise.all(tileImages).then(imageList => {
-            const imageDict = imageList.reduce((a, c) => { a[c.url] = c.img; return a; }, {});
-            draw(context, imageDict);
+            setImageDict(imageList.reduce((a, c) => { a[c.url] = c.img; return a; }, {}));
         });
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -45,5 +42,11 @@ export default function MapCanvas({ mapTiles }) {
         }
     }
 
-    return <canvas ref={ref} />;
+    if (Object.keys(imageDict).length > 0) {
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
+        draw(context, imageDict);
+    }
+
+    return <canvas ref={canvasRef} />;
 }

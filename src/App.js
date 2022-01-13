@@ -5,7 +5,7 @@ import './index.css';
 import MapCanvas from './MapCanvas';
 
 export default function App() {
-    const [getNext, setSeed] = useRandom(123456789);
+    const [getRandom, setSeed] = useRandom(123456789);
     const getTodaysWord = useWordle();
 
     const [wordle, setWordle] = useState('');
@@ -19,8 +19,19 @@ export default function App() {
         '🟩': 2,
     };
 
+    const regionNames = [
+        'Land of %%', 'Kingdom of %%', 'Duchy of %%', '%% Territory', 
+        '%% Region', 'Realm of %%', '%% Empire', '%% Nation', '%% Domain',
+        'Province of %%', '%% Colonies', 'Throne of %%', 'Crown of %%',
+    ]
+
     function getRandomBlock() {
-        return Math.floor(getNext() * 3);
+        return getRandom(3);
+    }
+
+    function getRegionName(word) {
+        const index = getRandom(regionNames);
+        return regionNames[index].replace('%%', word)
     }
 
     function convertWordle() {
@@ -102,7 +113,7 @@ export default function App() {
             <div className="right-col">
                 {blocks.length > 0 ?
                     <div>
-                        <h2>Map {wordleNum === 0 ? '???' : wordleNum} - The Land of {getTodaysWord(wordleNum)}</h2>
+                        <h2>Map {wordleNum === 0 ? '???' : wordleNum} - {getRegionName(getTodaysWord(wordleNum))}</h2>
                         <MapCanvas mapTiles={createMapTiles()} />
                     </div>
                     : null}
@@ -120,5 +131,14 @@ Wordle 205 5/6
 ⬛🟩🟨🟨⬛
 ⬛🟩🟨⬛🟩
 🟩🟩🟩🟩🟩
+
+Wordle 208 X/6
+
+🟩⬛⬛⬛🟨
+🟩⬛⬛🟩⬛
+🟩⬛⬛🟩⬛
+🟩⬛⬛🟩⬛
+🟩⬛⬛🟩⬛
+🟩⬛⬛🟩⬛
 
 */

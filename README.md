@@ -7,7 +7,7 @@ It's pretty rough right now, but it does the thing.
 ## TODO
 
 * Save/share hexle by url
-* Reset/reload
 * Better/simpler tiles
 * Tile embellishments
 * Locations/encounters
+* tweak tilesets to get ocean on bottom
