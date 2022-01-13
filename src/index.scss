@@ -7,11 +7,11 @@ body {
 button {
     color: #ccc;
     width: 160px;
-}
 
-button:hover {
-    color: #fff;
-    background-color: #333;
+    &:hover {
+        color: #fff;
+        background-color: #333;
+    }
 }
 
 h1 {
@@ -19,7 +19,7 @@ h1 {
     font-size: 3em;
     font-weight: 700;
     letter-spacing: 3.2px;
-    margin: .5em auto 0 auto;
+    margin: 0.5em auto 0 auto;
     text-align: center;
     text-transform: uppercase;
     width: 50%;
@@ -50,7 +50,7 @@ textarea {
 
 .input-label {
     font-size: 1.2em;
-    margin-bottom: .8em;
+    margin-bottom: 0.8em;
     text-align: center;
     text-transform: uppercase;
     width: 160px;
@@ -71,4 +71,27 @@ textarea {
 .canvas-frame {
     position: relative;
     text-align: center;
+}
+
+.greybar {
+    span {
+        display: inline-block;
+        width: 1.8em;
+        height: 4.2rem;
+        background-color: #333;
+        margin-right: 0.4em;
+    }
+
+    .g2 {
+        width: 0.7em;
+    }
+    .g3 {
+        width: 1.4em;
+    }
+    .g5 {
+        width: 3em;
+    }
+    .g7 {
+        width: 3.5em;
+    }
 }

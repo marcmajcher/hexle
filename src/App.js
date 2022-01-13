@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import useGenerator from './useGenerator';
-import './index.css';
+import './index.scss';
 import MapCanvas from './MapCanvas';
 import { useParams } from 'react-router-dom';
 
@@ -31,7 +31,17 @@ export default function App() {
                         <h2>{getMapTitle()}</h2>
                         <MapCanvas mapTiles={mapTiles()} />
                     </div>
-                    : null}
+                    : 
+                    <div>
+                        <h2 className="greybar">
+                            <span className="g3" />
+                            <span className="g7" />
+                            <span className="g2" />
+                            <span className="g5" />
+                            </h2>
+                            <img src="placeholder.png" alt="placeholder" />
+                        </div>
+                        }
             </div>
         </div>
     </div>;
