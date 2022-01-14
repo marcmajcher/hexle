@@ -5,7 +5,7 @@ export const numToBlock = {
     2: '🟩',
 };
 export const blockToNum = Object.keys(numToBlock)
-    .reduce((a, c) => { a[numToBlock[c]] = c; return a; }, {});
+    .reduce((a, c) => { a[numToBlock[c]] = parseInt(c); return a; }, {});
 
 function convertBlocksToUnicode(blockStr) {  // Rule One
     const unList = blockStr.split('').map(e => numToBlock[e]);

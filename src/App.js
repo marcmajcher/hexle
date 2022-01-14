@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import useGenerator from './lib/useGenerator';
 import './index.scss';
@@ -9,16 +10,25 @@ export default function App() {
     const navigate = useNavigate();
     const params = useParams();
     const [wordle, setWordle] = useState('');
+    const [mapTitle, setMapTitle] = useState('');
+    const [mapTiles, setMapTiles] = useState([]);
     const [help, setHelp] = useState(false);
-    const { parseWordle, mapTiles, getMapTitle, mapReady } = useGenerator();
+    const [dummy, setDummy] = useState(false);
+    const { parseWordle, getMapTiles, getMapTitle, mapReady } = useGenerator();
 
     useEffect(() => {
         if (params.id !== undefined) {
             const { wordle } = decode(params.id);
             setWordle(wordle);
             parseWordle(wordle);
+            setDummy(true);
         }
-    }, [params.id]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [params.id]);
+
+    useEffect(() => { // UGH
+        setMapTitle(getMapTitle());
+        setMapTiles(getMapTiles());
+    }, [dummy]);
 
     return (
         <div className="main">
@@ -34,6 +44,7 @@ export default function App() {
                 <button className={help ? 'help' : ''} onClick={() => {
                     const encodedWordle = parseWordle(wordle);
                     navigate(`/${encodedWordle}`);
+                    setDummy(false);
                 }}>HEXME</button>
             </div>
             <div className="right-col">
@@ -45,8 +56,8 @@ export default function App() {
                 </nav>
                 {mapReady() ?
                     <div>
-                        <h2>{getMapTitle()}</h2>
-                        <MapCanvas mapTiles={mapTiles()} />
+                        <h2>{mapTitle}</h2>
+                        <MapCanvas mapTiles={mapTiles} />
                     </div>
                     :
                     <div>

@@ -6,7 +6,7 @@ import useWordle from './useWordle';
 export default function useGenerator() {
     const getTodaysWord = useWordle();
     const [getRandom, setSeed] = useRandom(123456789);
-    const [blocks, setBlocks] = useState('');
+    const [blocks, setBlocks] = useState([]);
     const [wordleNum, setWordleNum] = useState(0);
 
     const wordleWidth = 5;
@@ -94,7 +94,7 @@ export default function useGenerator() {
 
     return {
         parseWordle,
-        mapTiles: () => createMapTiles(wordleWidth, wordleHeight),
+        getMapTiles: () => createMapTiles(wordleWidth, wordleHeight),
         getMapTitle,
         mapReady,
     };
