@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Tiles, TileList } from './tiles';
-import HexSpinner from './HexSpinner';
+import { Tiles, TileList } from './Tiles';
+import HexSpinner from './ui/HexSpinner';
 
 const tileWidth = 100;
 const tileHeight = tileWidth * 1.16667;

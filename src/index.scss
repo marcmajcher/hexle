@@ -1,7 +1,15 @@
+:root {
+    --white: #eee;
+}
+
 body {
     background-color: #111;
     color: #eee;
     font-family: "Clear Sans", "Helvetica Nue", Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: #7dc5db;
 }
 
 button {
@@ -15,23 +23,48 @@ button {
 }
 
 h1 {
-    border-bottom: 1px solid #eee;
+    display: inline-block;
     font-size: 3em;
     font-weight: 700;
     letter-spacing: 3.2px;
     margin: 0.5em auto 0 auto;
     text-align: center;
     text-transform: uppercase;
-    width: 50%;
 }
 
 nav {
-    margin-bottom: 3em;
+    border-bottom: 1px solid #ccc;
+    margin: 1em auto 4em auto;
+    position: relative;
+    text-align: center;
+    width: 600px;
+
+    .help-button {
+        position: absolute;
+        left: 0;
+        top: 44px;
+        height: 28px;
+        width: 28px;
+    }
+
+    .share-button {
+        position: absolute;
+        right: 0;
+        top: 44px;
+        height: 28px;
+        width: 28px;
+    }
+}
+
+footer {
+    color: #999;
+    margin-top: 4em;
     text-align: center;
 }
 
 .left-col {
     display: inline-block;
+    padding-top: 10em;
     text-align: center;
     width: 180px;
     vertical-align: top;
@@ -45,11 +78,12 @@ nav {
 }
 
 .input-label {
+    color: #aaa;
     font-size: 1.2em;
     margin-bottom: 0.8em;
     text-align: center;
     text-transform: uppercase;
-    width: 160px;
+    width: 180px;
 }
 
 .main {
@@ -91,4 +125,11 @@ nav {
     .g7 {
         width: 3.5em;
     }
+}
+
+.bug-button {
+    color: #666;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
 }
