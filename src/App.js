@@ -28,7 +28,7 @@ export default function App() {
                 </div>
                 <button onClick={() => {
                     const encodedWordle = parseWordle(wordle);
-                    navigate(`/hexle/${encodedWordle}`);
+                    navigate(`/${encodedWordle}`);
                 }}>HEXME</button>
             </div>
             <div className="right-col">

@@ -8,8 +8,7 @@ ReactDOM.render(
     <HashRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/hexle/" element={<App />} />
-        <Route path="/hexle/:id" element={<App />} />
+        <Route path="/:id" element={<App />} />
       </Routes>
     </HashRouter>
   </React.StrictMode >,

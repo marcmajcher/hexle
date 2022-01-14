@@ -1,13 +1,13 @@
-const border = 'https://static.majcher.com/hexle/tiles/100/border.png';
-const desert = 'https://static.majcher.com/hexle/tiles/100/desert.png';
-const forest = 'https://static.majcher.com/hexle/tiles/100/forest.png';
-const hills = 'https://static.majcher.com/hexle/tiles/100/hills.png';
-const jungle = 'https://static.majcher.com/hexle/tiles/100/jungle.png';
-const mountain = 'https://static.majcher.com/hexle/tiles/100/mountain.png';
-const plains = 'https://static.majcher.com/hexle/tiles/100/plains.png';
-const swamp = 'https://static.majcher.com/hexle/tiles/100/swamp.png';
-const wastes = 'https://static.majcher.com/hexle/tiles/100/wastes.png';
-const water = 'https://static.majcher.com/hexle/tiles/100/water.png';
+const border = '/tiles/border.png';
+const desert = '/tiles/desert.png';
+const forest = '/tiles/forest.png';
+const hills = '/tiles/hills.png';
+const jungle = '/tiles/jungle.png';
+const mountain = '/tiles/mountain.png';
+const plains = '/tiles/plains.png';
+const swamp = '/tiles/swamp.png';
+const wastes = '/tiles/wastes.png';
+const water = '/tiles/water.png';
 
 export const TileList = [
     border,

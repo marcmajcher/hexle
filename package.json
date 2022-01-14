@@ -1,6 +1,6 @@
 {
   "name": "hexle",
-  "homepage": "http://mmajcher.github.io/hexle",
+  "homepage": "http://hexle.me/",
   "version": "0.1.0",
   "devDependencies": {
     "gh-pages": "^3.2.3"
