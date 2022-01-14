@@ -53,8 +53,7 @@ export default function App() {
                     <span className="material-icons help-button"
                         onClick={() => setHelp(!help)}>help_outline</span>
                     <h1>HEXLE</h1>
-                    <CopyButton />
-                    {/* <span className="material-icons share-button">share</span> */}
+                    <CopyButton active={params.id !== undefined} />
                 </nav>
                 {mapReady() ?
                     <div>

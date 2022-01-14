@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ToolTip from "./ToolTip";
 
-export default function CopyButton() {
+export default function CopyButton({ active }) {
   const [copied, setCopied] = useState(false);
 
   function copy() {
@@ -14,9 +14,11 @@ export default function CopyButton() {
     setCopied(true);
   }
 
-  return (<>
-    <span onClick={copy} className="material-icons share-button">share</span>
-    <ToolTip active={copied} remove={() => setCopied(false)}>Copied Shareable URL to Clipboard</ToolTip>
-  </>);
-
+  return active ?
+    <>
+      <span onClick={copy} className="material-icons share-button">share</span>
+      <ToolTip active={copied} remove={() => setCopied(false)}>Copied Shareable URL to Clipboard</ToolTip>
+    </>
+    :
+    <span className="material-icons share-button dark">share</span>;
 }
