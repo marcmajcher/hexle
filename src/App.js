@@ -3,36 +3,43 @@ import useGenerator from './lib/useGenerator';
 import './index.scss';
 import MapCanvas from './MapCanvas';
 import { useNavigate, useParams } from 'react-router-dom';
+import { decode } from './lib/Encoder';
 
 export default function App() {
-    const [parseWordle, mapTiles, getMapTitle, mapReady, decodeWordle] = useGenerator();
-    const params = useParams();
     const navigate = useNavigate();
+    const params = useParams();
     const [wordle, setWordle] = useState('');
-    const [needHelp, setNeedHelp] = useState(false);
+    const [help, setHelp] = useState(false);
+    const { parseWordle, mapTiles, getMapTitle, mapReady } = useGenerator();
 
     useEffect(() => {
-        setWordle(decodeWordle(params.id));
+        if (params.id !== undefined) {
+            const { wordle } = decode(params.id);
+            setWordle(wordle);
+            parseWordle(wordle);
+        }
     }, [params.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="main">
             <div className="left-col">
-                <div className={needHelp ? 'help input-label' : 'input-label'}>Paste Your Wordle Here!</div>
+                <div className={help ? 'help input-label' : 'input-label'}>
+                    Paste Your Wordle Here!
+                </div>
                 <div>
                     <textarea className="wordle-input" value={wordle}
                         onChange={e => setWordle(e.target.value)}
                     />
                 </div>
-                <button className={needHelp ? 'help' : ''} onClick={() => {
+                <button className={help ? 'help' : ''} onClick={() => {
                     const encodedWordle = parseWordle(wordle);
                     navigate(`/${encodedWordle}`);
                 }}>HEXME</button>
             </div>
             <div className="right-col">
                 <nav>
-                    <span class="material-icons help-button"
-                        onClick={() => setNeedHelp(!needHelp)}>help_outline</span>
+                    <span className="material-icons help-button"
+                        onClick={() => setHelp(!help)}>help_outline</span>
                     <h1>HEXLE</h1>
                     <span className="material-icons share-button">share</span>
                 </nav>
@@ -58,7 +65,9 @@ export default function App() {
                     <a href="https://twitter.com/majcher">@majcher</a>
                 </footer>
             </div>
-            <a href="https://github.com/marcmajcher/hexle/issues"><span class="material-icons bug-button">bug_report</span></a>
+            <a href="https://github.com/marcmajcher/hexle/issues">
+                <span className="material-icons bug-button">bug_report</span>
+            </a>
         </div>
     );
 }

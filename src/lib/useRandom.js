@@ -4,7 +4,7 @@ export default function useRandom(seedIn) {
     const seed = useRef(parseInt(seedIn));
     const seedLen = seedIn.toString().length;
     const seedSize = seedLen % 2 ? seedLen + 1 : seedLen;
-
+console.log("SEE",seed)
     function getNext(range = -1) {
         // use middle square because dgaf, bigger seed is better
         const square = (seed.current * seed.current).toString().padStart(seedSize * 2, '0');

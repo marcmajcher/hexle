@@ -72,6 +72,7 @@ footer {
 }
 
 .right-col {
+    position: relative;
     display: inline-block;
     text-align: center;
     vertical-align: top;
@@ -95,7 +96,7 @@ footer {
 }
 
 .wordle-input {
-    font-size: 2em;
+    font-size: 1.5em;
     height: 340px;
     width: 160px;
 }
