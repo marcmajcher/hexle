@@ -9,6 +9,7 @@ export default function App() {
     const params = useParams();
     const navigate = useNavigate();
     const [wordle, setWordle] = useState('');
+    const [needHelp, setNeedHelp] = useState(false);
 
     useEffect(() => {
         setWordle(decodeWordle(params.id));
@@ -17,20 +18,21 @@ export default function App() {
     return (
         <div className="main">
             <div className="left-col">
-                <div className="input-label">Paste Your Wordle Here!</div>
+                <div className={needHelp ? 'help input-label' : 'input-label'}>Paste Your Wordle Here!</div>
                 <div>
                     <textarea className="wordle-input" value={wordle}
                         onChange={e => setWordle(e.target.value)}
                     />
                 </div>
-                <button onClick={() => {
+                <button className={needHelp ? 'help' : ''} onClick={() => {
                     const encodedWordle = parseWordle(wordle);
                     navigate(`/${encodedWordle}`);
                 }}>HEXME</button>
             </div>
             <div className="right-col">
                 <nav>
-                    <span class="material-icons help-button">help_outline</span>
+                    <span class="material-icons help-button"
+                        onClick={() => setNeedHelp(!needHelp)}>help_outline</span>
                     <h1>HEXLE</h1>
                     <span className="material-icons share-button">share</span>
                 </nav>
@@ -51,8 +53,8 @@ export default function App() {
                     </div>
                 }
                 <footer>
-                    Hexle Wordle Hexmap Generator | 
-                    2022 <a href="https://majcher.itch.io">Marc Majcher</a> | 
+                    Hexle Wordle Hexmap Generator |
+                    2022 <a href="https://majcher.itch.io">Marc Majcher</a> |
                     <a href="https://twitter.com/majcher">@majcher</a>
                 </footer>
             </div>

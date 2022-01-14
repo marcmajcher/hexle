@@ -40,6 +40,7 @@ nav {
     width: 600px;
 
     .help-button {
+        cursor: pointer;
         position: absolute;
         left: 0;
         top: 44px;
@@ -109,7 +110,7 @@ footer {
         display: inline-block;
         width: 1.8em;
         height: 4.2rem;
-        background-color: #333;
+        background-color: #080808;
         margin-right: 0.4em;
     }
 
@@ -132,4 +133,10 @@ footer {
     position: absolute;
     left: 10px;
     bottom: 10px;
+}
+
+.help {
+    background-color: rgb(177, 158, 75);
+    color: #333;
+    font-weight: bold;
 }
