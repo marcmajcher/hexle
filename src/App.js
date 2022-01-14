@@ -5,6 +5,7 @@ import './index.scss';
 import MapCanvas from './MapCanvas';
 import { useNavigate, useParams } from 'react-router-dom';
 import { decode } from './lib/Encoder';
+import CopyButton from './ui/CopyButton';
 
 export default function App() {
     const navigate = useNavigate();
@@ -52,7 +53,8 @@ export default function App() {
                     <span className="material-icons help-button"
                         onClick={() => setHelp(!help)}>help_outline</span>
                     <h1>HEXLE</h1>
-                    <span className="material-icons share-button">share</span>
+                    <CopyButton />
+                    {/* <span className="material-icons share-button">share</span> */}
                 </nav>
                 {mapReady() ?
                     <div>

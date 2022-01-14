@@ -39,21 +39,20 @@ nav {
     text-align: center;
     width: 600px;
 
-    .help-button {
+    span {
         cursor: pointer;
         position: absolute;
-        left: 0;
         top: 44px;
         height: 28px;
         width: 28px;
     }
 
+    .help-button {
+        left: 0;
+    }
+
     .share-button {
-        position: absolute;
         right: 0;
-        top: 44px;
-        height: 28px;
-        width: 28px;
     }
 }
 
