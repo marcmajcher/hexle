@@ -4,8 +4,13 @@ export const numToBlock = {
     1: '🟨',
     2: '🟩',
 };
-export const blockToNum = Object.keys(numToBlock)
-    .reduce((a, c) => { a[numToBlock[c]] = parseInt(c); return a; }, {});
+export const blockToNum = {
+    '⬛': 0,
+    '🟨': 1,
+    '🟩': 2,
+    '🟦': 1,
+    '🟧': 2,
+};
 
 function convertBlocksToUnicode(blockStr) {  // Rule One
     const unList = blockStr.split('').map(e => numToBlock[e]);
