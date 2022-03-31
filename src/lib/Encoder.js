@@ -14,7 +14,7 @@ export const blockToNum = {
 
 function convertBlocksToUnicode(blockStr) {  // Rule One
     const unList = blockStr.split('').map(e => numToBlock[e]);
-    const len = 5;
+    const len = 6;
     const outList = [];
 
     for (let i = 0; i < len; i++) {
