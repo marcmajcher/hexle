@@ -14,11 +14,12 @@ export const blockToNum = {
 
 function convertBlocksToUnicode(blockStr) {  // Rule One
     const unList = blockStr.split('').map(e => numToBlock[e]);
-    const len = 6;
+    const wordLength = 5;
+    const puzzleLength = 6;
     const outList = [];
 
-    for (let i = 0; i < len; i++) {
-        outList.push(unList.slice(i * len, i * len + len).join(''));
+    for (let i = 0; i < puzzleLength; i++) {
+        outList.push(unList.slice(i * wordLength, i * wordLength + wordLength).join(''));
     }
     return outList.join('\n');
 }
