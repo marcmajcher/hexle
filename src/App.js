@@ -72,7 +72,7 @@ export default function App() {
                     </div>
                 }
                 <footer>
-                    Hexle Wordle Hexmap Generator |
+                    Hexle Wordle Hexmap Generator v1.0 |
                     2022 <a href="https://majcher.itch.io">Marc Majcher</a> |
                     <a href="https://twitter.com/majcher">@majcher</a>
                 </footer>
